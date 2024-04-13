@@ -23,7 +23,7 @@ validUrl <- function(url, time=2){
 #' Convert a Wikipedia URL to an HTML link
 #' @param url Character vector of URLs.
 #' @param text A vector with name of the correspondent title of the url (See details).
-#' @details This function converts an available URL direction to the corresponding HTML link, i.e., "https://es.wikipedia.org/wiki/Socrates" changes into "<a href='https://es.wikipedia.org/wiki/Socrates', target='_blank'>Socrates</a>".
+#' @details This function converts an available URL direction to the corresponding HTML link, i.e., "https://es.wikipedia.org/wiki/Socrates" changes into "\verb{<a href='https://es.wikipedia.org/wiki/Socrates' target='_blank'>Socrates</a>}".
 #` It is possible to change the showing name of the link directly using the argument text. When not specified, it is extracted directly from the URL.
 #' @return A character vector of HTML links for the given urls.
 #' @author Modesto Escobar, Department of Sociology and Communication, University of Salamanca. See <https://sociocav.usal.es/blog/modesto-escobar/>
@@ -53,7 +53,7 @@ urltoHtml <- function(url, text=NULL) {
 # urltoFrame----
 #' Convert an URL link to an HTML iframe.
 #' @param url Character vector of URLs.
-#' @details This function converts an available URL direction to the corresponding HTML iframe, i.e., "https://es.wikipedia.org/wiki/Socrates" changes into "<a href='https://es.wikipedia.org/wiki/Socrates', target='_blank'>Socrates</a>".
+#' @details This function converts an available URL direction to the corresponding HTML iframe, i.e., "https://es.wikipedia.org/wiki/Socrates" changes into "\verb{<a href='https://es.wikipedia.org/wiki/Socrates' target='_blank'>Socrates</a>}".
 #' @return A character vector of HTML iframe for the given urls.
 #' @author Modesto Escobar, Department of Sociology and Communication, University of Salamanca. See <https://sociocav.usal.es/blog/modesto-escobar/>
 #' @examples
@@ -80,7 +80,7 @@ urltoFrame <- function(url){
 #' @return A vector of the split segments of the text.
 #' @examples
 #' ## A text with three names separated with commas is converted into a vector of length 3.
-#' cc("Pablo Picasso, Diego Velazquez, Salvador Dali")
+#' cc("Pedro Almodovar, Diego Velazquez, Salvador Dali")
 #' @author Modesto Escobar, Department of Sociology and Communication, University of Salamanca. See <https://sociocav.usal.es/blog/modesto-escobar/>
 #' @export
 cc <- function(text, sep=",") {
@@ -138,7 +138,7 @@ nametoWikiURL <- function (name, language="en") {
 #' @param name A vector consisting of one or more Wikipedia's entry (i.e., topic or person).
 #' @param language The language of the Wikipedia page version. This should consist of an ISO language code (default = "en").
 #' @return A character vector of names' links.
-#' @details This function adds the Wikipedia's html link to a entry or name, i.e., "Max Weber" converts into "<a href='https://es.wikipedia.org/wiki/Max_Weber', target='_blank'>Max Weber</a>". It also manages different the languages of Wikipedia through the abbreviated two-letter language parameter, i.e., "en" = "english".
+#' @details This function adds the Wikipedia's html link to a entry or name, i.e., "Max Weber" converts into "\verb{<a href='https://es.wikipedia.org/wiki/Max_Weber' target='_blank'>Max Weber</a>}". It also manages different the languages of Wikipedia through the abbreviated two-letter language parameter, i.e., "en" = "english".
 #' @author Modesto Escobar, Department of Sociology and Communication, University of Salamanca. See <https://sociocav.usal.es/blog/modesto-escobar/>
 #' @examples
 #' ## When extracting a single item;
@@ -223,6 +223,17 @@ searchWiki <- function(name, language=c("en", "es", "fr", "it", "de", "pt", "ca"
   return(errores)
 }
 
+# find_item ----
+find_item <- function(name, language = "en", limit = 10){
+    response <- httr::GET(url="https://www.wikidata.org/w/api.php",
+      query=list(action = "wbsearchentities", type = "item",
+      language = language, limit = limit, search = name, format = 'json'))
+    httr::stop_for_status(response)
+    response_text <- httr::content(x = response, as = "text")
+    parsed_text <- jsonlite::fromJSON(txt = response_text, simplifyVector = FALSE)
+    i <- parsed_text$search
+}
+
 # getWikiInf ----
 #' Create a data.frame with Q's and descriptions of a vector of names.
 #' @param names A vector consisting of one or more Wikidata's entry (i.e., topic or person).
@@ -232,7 +243,7 @@ searchWiki <- function(name, language=c("en", "es", "fr", "it", "de", "pt", "ca"
 #' @author Modesto Escobar, Department of Sociology and Communication, University of Salamanca. See <https://sociocav.usal.es/blog/modesto-escobar/>
 #' @examples
 #' ## Obtaining information in English Wikidata
-#' names <- c("William Shakespeare", "Pablo Picasso")
+#' names <- c("William Shakespeare", "Pedro Almodovar")
 #' information <- getWikiInf(names)
 #'
 #' ## Obtaining information in Spanish Wikidata
@@ -240,10 +251,11 @@ searchWiki <- function(name, language=c("en", "es", "fr", "it", "de", "pt", "ca"
 #' informacion <- getWikiInf(names, language="es")
 #' }
 #' @export
-#' @importFrom WikidataR find_item
+#' @importFrom httr GET stop_for_status content
+#' @importFrom jsonlite fromJSON
 getWikiInf <- function(names, number=1, language="en"){
-  get <-function(name, number=1, language="en"){
-    i <- find_item(name, language=language)
+  get <-function(name, number, language){
+    i <- find_item(name,language)
     if(length(i)>=number) {
       X <- c(name=name, Q=i[[number]]$id, 
              label=ifelse(is.null(i[[number]]$label),NaN, i[[number]]$label),
@@ -266,13 +278,12 @@ getWikiInf <- function(names, number=1, language="en"){
 #' @examples
 #' ## Obtaining information in English Wikidata
 #' \dontrun{
-#' names <- c("William Shakespeare", "Pablo Picasso")
+#' names <- c("William Shakespeare", "Pedro Almodovar")
 #' info <- getWikiData(names)
 #' ## Obtaining information in Spanish Wikidata
 #' d <- getWikiData(names, language="es")
 #' }
 #' @export
-#' @importFrom WikidataQueryServiceR query_wikidata
 #' @importFrom utils write.csv2
 getWikiData <- function(names, language="en", csv=NULL) {
   petition <-function(q){
@@ -287,7 +298,7 @@ getWikiData <- function(names, language="en", csv=NULL) {
      (GROUP_CONCAT(DISTINCT ?no;separator="|")      as ?notableworkQ)
      WHERE {
      BIND(wd:',q,' AS ?entity)
-    SERVICE wikibase:label {bd:serviceParam wikibase:language "en"}
+    SERVICE wikibase:label {bd:serviceParam wikibase:language"', language, '"}
     {
       SELECT ?birthdate (COUNT(?refP569) AS ?cP569)
       WHERE {
@@ -320,11 +331,11 @@ getWikiData <- function(names, language="en", csv=NULL) {
     }
     OPTIONAL {?entity wdt:P21  ?sex.}
     OPTIONAl {?entity wdt:P18  ?pic.} 
-    OPTIONAL {?entity wdt:P106 ?oc. ?oc rdfs:label ?ocLabel. FILTER(LANG(?ocLabel) = "en")}
-    OPTIONAL {?entity wdt:P135 ?mo. ?mo rdfs:label ?moLabel. FILTER(LANG(?moLabel) = "en")} 
-    OPTIONAL {?entity wdt:P136 ?ge. ?ge rdfs:label ?geLabel. FILTER(LANG(?geLabel) = "en")}
-    OPTIONAL {?entity wdt:P737 ?in. ?in rdfs:label ?inLabel. FILTER(LANG(?inLabel) = "en")}
-    OPTIONAL {?entity wdt:P800 ?no. ?no rdfs:label ?noLabel. FILTER(LANG(?noLabel) = "en")}
+    OPTIONAL {?entity wdt:P106 ?oc. ?oc rdfs:label ?ocLabel. FILTER(LANG(?ocLabel) = "', language, '")}
+    OPTIONAL {?entity wdt:P135 ?mo. ?mo rdfs:label ?moLabel. FILTER(LANG(?moLabel) = "', language, '")} 
+    OPTIONAL {?entity wdt:P136 ?ge. ?ge rdfs:label ?geLabel. FILTER(LANG(?geLabel) = "', language, '")}
+    OPTIONAL {?entity wdt:P737 ?in. ?in rdfs:label ?inLabel. FILTER(LANG(?inLabel) = "', language, '")}
+    OPTIONAL {?entity wdt:P800 ?no. ?no rdfs:label ?noLabel. FILTER(LANG(?noLabel) = "', language, '")}
     }
    GROUP BY ?entityLabel ?entityDescription ?sexLabel ?birthdate ?birthplaceLabel ?birthcountryLabel ?deathdate ?deathplaceLabel ?deathcountryLabel 
 ')
@@ -332,26 +343,32 @@ getWikiData <- function(names, language="en", csv=NULL) {
   }
   
   getWiki <-function(nombre){
-    i <- find_item(nombre, language=language, limit=1)
-    if(length(i)>0) {
-      Q <- i[[1]]$id
-      X <- suppressMessages(query_wikidata(petition(Q)))
-      X <- cbind(Q, X)
-      bcb <- !is.na(X$birthdate) && substring(X$birthdate,1,1)=="-"
-      bcd <- !is.na(X$deathdate) && substring(X$deathdate,1,1)=="-"
-      X$birthdate <- sub("^-","",X$birthdate)
-      X$deathdate <- sub("^-","",X$deathdate)
-      X$birthdate <- as.numeric(format(as.POSIXct(X$birthdate, origin="1960-01-01", optional=TRUE), "%Y"))
-      X$deathdate <- as.numeric(format(as.POSIXct(X$deathdate, origin="1960-01-01", optional=TRUE), "%Y"))
-      if(bcb) X$birthdate <- -X$birthdate
-      if(bcd) X$deathdate <- -X$deathdate
-    }
-    else X <- data.frame(Q=NA, entityLabel=nombre, entityDescription =NA, sexLabel=NA, 
+    emptyX <- data.frame(Q=NA, entityLabel=nombre, entityDescription =NA, sexLabel=NA, 
                          birthdate=NA, birthplaceLabel=NA, birthcountryLabel=NA,
                          deathdate=NA, deathplaceLabel=NA, deathcountryLabel=NA,
                          pics=NA, occupation=NA, movement=NA, genres=NA, 
                          influencedby=NA, influencebyQ=NA, notablework=NA, notableworkQ=NA,
                          stringsAsFactors = FALSE)
+    i <- find_item(nombre, language=language, limit=1)
+    if(length(i)>0) {
+      Q <- i[[1]]$id
+      X <- w_query(petition(Q), format="csv", method='POST', limitRequester=TRUE)
+      if(is.null(dim(X))){
+        X <- emptyX
+      }else{
+        X <- cbind(Q, X[1, ])
+        bcb <- !is.na(X$birthdate) && substring(X$birthdate,1,1)=="-"
+        bcd <- !is.na(X$deathdate) && substring(X$deathdate,1,1)=="-"
+        X$birthdate <- sub("^-","",X$birthdate)
+        X$deathdate <- sub("^-","",X$deathdate)
+        X$birthdate <- as.numeric(format(as.POSIXct(X$birthdate, origin="1960-01-01", optional=TRUE), "%Y"))
+        X$deathdate <- as.numeric(format(as.POSIXct(X$deathdate, origin="1960-01-01", optional=TRUE), "%Y"))
+        if(bcb) X$birthdate <- -X$birthdate
+        if(bcd) X$deathdate <- -X$deathdate
+      }
+    }else{
+      X <- emptyX
+    }
     return(X)
   }
 
@@ -499,7 +516,7 @@ getWikiFiles <- function(X, language=c("es", "en", "fr"), directory="./", maxtim
 #' @param maximum Number maximum of characters to be included when the paragraph is too large.
 #' @examples
 #' ## Obtaining information in English Wikidata
-#' names <- c("William Shakespeare", "Pablo Picasso")
+#' names <- c("William Shakespeare", "Pedro Almodovar")
 #' info <- getWikiInf(names)
 #' info$text <- extractWiki(info$label)
 #' @return a character vector with html formatted (or plain text) Wikipedia paragraphs.
@@ -524,127 +541,3 @@ extractWiki <- function(names, language=c("en", "es", "fr", "de", "it"), plain=F
   return(sapply(names, extract, language=language, plain=plain, maximum=maximum))
 }
 
-# get_template ----
-#' Create a drop-down vignette for nodes from different items (for galleries).
-#' @param data data frame which contains the data.
-#' @param title column name which contains the first tittle of the vignette.
-#' @param title2 column name which contains the secondary title of the vignette.
-#' @param text column name which contains the main text of the vignette.
-#' @param img column name which contains the names of the image files.
-#' @param wiki column name which contains the wiki URL for the vignette.
-#' @param width length of the vignette's width.
-#' @param color color of the vignette's strip (It also could be a column name which contains colors).
-#' @param cex number indicating the amount by which plotting text should be scaled relative to the default.
-#' @examples
-#' ## Obtaining information in English Wikidata
-#' \dontrun{
-#' names <- c("William Shakespeare", "Pablo Picasso")
-#' information <- getWikiData(names)
-#' information$html <- get_template(information, title="entityLabel", text="entityDescription")
-#' }
-#' @return a character vector of html formatted vignettes.
-#' @author Modesto Escobar, Department of Sociology and Communication, University of Salamanca. See <https://sociocav.usal.es/blog/modesto-escobar/>
-#' @export
-get_template <- function(data, title=NULL, title2=NULL, text=NULL, img=NULL, wiki=NULL, width=300, color="#135dcd", cex=1){
-  return(get_template_(data, title, title2, text, img, wiki, width, c(6,12), color, cex))
-}
-
-#get_template_for_maps----
-#' Create a drop-down vignette for nodes from different items (for maps).
-#' @param data data frame which contains the data.
-#' @param title column name which contains the first tittle of the vignette.
-#' @param title2 column name which contains the secondary title of the vignette.
-#' @param text column name which contains the main text of the vignette.
-#' @param img column name which contains the names of the image files.
-#' @param wiki column name which contains the wiki URL for the vignette.
-#' @param color color of the vignette's strip (It also could be a column name which contains colors).
-#' @param cex number indicating the amount by which plotting text should be scaled relative to the default.
-#' @examples
-#' ## Obtaining information in English Wikidata
-#' \dontrun{
-#' names <- c("William Shakespeare", "Pablo Picasso")
-#' info <- getWikiData(names)
-#' info$html <- get_template_for_maps(info, title="entityLabel", text="entityDescription")
-#' }
-#' @return a character vector of html formatted vignettes.
-#' @author Modesto Escobar, Department of Sociology and Communication, University of Salamanca. See <https://sociocav.usal.es/blog/modesto-escobar/>
-#' @export
-get_template_for_maps <- function(data, title=NULL, title2=NULL, text=NULL, img=NULL, wiki=NULL, color="#cbdefb", cex=1){
-  return(get_template_(data, title, title2, text, img, wiki, NULL, c(13,19), color, cex))
-}
-
-get_template_ <- function(data, title=NULL, title2=NULL, text=NULL, img=NULL, wiki=NULL, width=NULL, padding=NULL, color=NULL, cex=1) {
-  if(length(color)){
-    if(length(data[[color]])){
-      color <- data[[color]]
-    }
-    color <- paste0('background-color:',color,';')
-  }else{
-    color <- ""
-  }
-  if(length(width)){
-    width <- paste0(" width: ",width,"px;")
-  }else{
-    width <- ""
-  }
-  if(length(padding)){
-    margin <- paste0("margin:",paste0(-padding,"px",collapse=" "),";")
-    padding <- paste0("padding:",paste0(padding,"px",collapse=" "),";")
-  }else{
-    padding <- ""
-    margin <- ""
-  }
-  data[["template"]] <- paste0('<div style="font-size:',cex,'em;',margin,width,'">')
-  borderRadius <- 'border-radius:12px 12px 0 0;'
-  if(is.character(img) && length(data[[img]])){
-    for(i in (1:nrow(data))){
-      if(file.exists(data[[i,img]])){
-        data[i,img] <- paste0("data:",mime(data[[i,img]]),";base64,",base64encode(data[[i,img]]))
-      }
-    }
-    data[["template"]] <- paste0(data[["template"]],'<img style="width:100%;',borderRadius,'" src="',data[[img]],'"/>')
-    borderRadius <- ''
-  }
-  if(is.character(title) && length(data[[title]])){
-    data[["template"]] <- paste0(data[["template"]],'<h2 style="font-size:2em;',color,padding,'margin-top:-3px;',borderRadius,'">',data[[title]],'</h2>')
-  }
-  data[["template"]] <- paste0(data[["template"]],'<div style="',padding,'">')
-  if(is.character(title2) && length(data[[title2]])){
-    data[["template"]] <- paste0(data[["template"]],'<h3>', data[[title2]],'</h3>')
-  }
-  if(is.character(text) && length(data[[text]])){
-    data[["template"]] <- paste0(data[["template"]],'<p>',data[[text]],'</p>')
-  }else{
-    data[["template"]] <- paste0(data[["template"]],'<p></p>')
-  }
-  if(is.character(wiki) && length(data[[wiki]])){
-    data[["template"]] <- paste0(data[["template"]],'<h3><img style="width:20px;vertical-align:bottom;margin-right:10px;" src="https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"/>Wikipedia: <a target="_blank" href="',data[[wiki]],'">',wiki,'</a></h3>')
-  }
-  data[["template"]] <- paste0(data[["template"]],'</div></div>')
-  return(data[["template"]])
-}
-
-base64encode <- function(filename) {
-  to.read = file(filename, "rb")
-  fsize <- file.size(filename)
-  sbit <- readBin(to.read, raw(), n = fsize, endian = "little")
-  close(to.read)
-  b64c <- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-  shfts <- c(18,12,6,0)
-  sand <- function(n,s) bitwAnd(bitwShiftR(n,s),63)+1
-  slft <- function(p,n) bitwShiftL(as.integer(p),n)
-  subs <- function(s,n) substring(s,n,n)
-  npad <- ( 3 - length(sbit) %% 3) %% 3
-  sbit <- c(sbit,as.raw(rep(0,npad)))
-  pces <- lapply(seq(1,length(sbit),by=3),function(ii) sbit[ii:(ii+2)])
-  encv <- paste0(sapply(pces,function(p) paste0(sapply(shfts,function(s)(subs(b64c,sand(slft(p[1],16)+slft(p[2],8)+slft(p[3],0),s)))))),collapse="")
-  if (npad > 0) substr(encv,nchar(encv)-npad+1,nchar(encv)) <- paste0(rep("=",npad),collapse="")
-  return(encv)
-}
-
-mime <- function(name) {
-  mimemap <- c(jpeg = "image/jpeg", jpg = "image/jpeg", png = "image/png", svg = "image/svg", gif = "image/gif")
-  ext <- sub("^.*\\.","",name)
-  mime <- unname(mimemap[ext])
-  return(mime)
-}

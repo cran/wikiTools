@@ -1,0 +1,400 @@
+---
+title: "Examples with wiki_utils"
+author: "Angel Zazo, Department of Computer Science and Automatics, University of Salamanca"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{wikiTools package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Functions
+
+### Functions to obtain a list of Wikidata entities
+
+w_SearchByLabel(string, langsorder='en', lang="", instanceof="", Pproperty="",
+                mode=c("exact","startswith","inlabel"))
+
+w_OccupationEntities(Qoc, nlimit=NULL, mode=c('default','count','wikipedias'))
+
+### Function to obtain information from a list of Wikidata entities or a single one.
+
+w_isInstanceOf(entity_list, instanceof)
+
+w_Wikipedias(entity_list, wikilangs="", instanceof="", nlimit=1500)
+
+w_isValid(entity_list, nlimit=50000)
+
+w_Property(entity_list, Pproperty, langsorder='en', nlimit=10000)
+
+w_IdentifiersOfAuthority(Pauthority, langsorder='en', instanceof="")
+
+Pauthority = Authority Database Property in Wikidata
+
+w_EntityInfo(entity, langsorder='en', wikilangs="", mode=c('default','tiny','film'))
+
+### Functions to obtain information using the WikiMedia API's
+
+m_Opensearch(string, project='en.wikipedia.org', profile="engine_autoselect", redirects="resolve")
+
+m_reqMediaWiki(titles, mode=c('wikidataEntity','redirects','pagePrimaryImage','pageFiles'),
+               project='en.wikipedia.org', redirects=TRUE, exclude_ext='svg|webp|xcf')
+
+m_Pageviews(article, start, end, project="en.wikipedia.org", access="all-access",
+             agent="user", granularity="monthly", redirects=FALSE)
+
+m_XtoolsInfo(article, infotype="articleinfo", project="en.wikipedia.org", redirects=FALSE)
+
+### Functions to obtain information (viafID or cluster records) using the VIAF API
+
+v_AutoSuggest(author) : obtains viafID
+
+v_Search(CQL_Query, mode=c('default', 'anyField', 'allmainHeadingEl',
+         'allNames', 'allPersonalNames', 'allTitle')) : obtains clusters records
+
+### Function to retrieve a cluster record using the viafID.
+
+v_GetRecord(viafid,  record_format='viaf.json'): retrieve a cluster record
+
+### Function to extract information from a VIAF cluster record
+
+v_Extract(viaf, info, source=NULL)
+
+
+
+## Package installation and loading
+
+To install and load the updated version of the wikiTools package simply run the following commands:
+```{r eval=FALSE}
+install.packages("wikiTools")
+```
+```{r echo=TRUE}
+library(wikiTools)
+```
+
+
+
+## Examples of Wikidata functions using WDQS
+
+#### Search string "Iranzo" in different positions
+Exact search in Label or exact search in AltLabel (case sensitive and diacritics)
+
+Optional: limit by instanceof Wikidata class (Qxx).
+
+Optional: return information of some properties (Pproperties, Pxxx).
+```{r echo=TRUE}
+df <- w_SearchByLabel(string='Iranzo', langsorder='es|en')
+df <- w_SearchByLabel(string='Iranzo', langsorder='es|en', instanceof = 'Q5')
+df <- w_SearchByLabel(string='Iranzo', langsorder='es|en', instanceof = 'Q5|Q101352')
+df <- w_SearchByLabel(string='Iranzo', langsorder='es|en', instanceof = 'Q5',
+                      Pproperty = 'P21|P569|P570')
+```
+
+#### Search at the beginning in Label or AltLabel (diacritics and case are ignored)
+```{r echo=TRUE}
+df <- w_SearchByLabel(string='Iranzo', lang='en', langsorder='es|en', mode='startswith')
+df <- w_SearchByLabel(string='Iranzo', lang='en', langsorder='es|en', instanceof = 'Q5',
+                      mode='startswith')
+df <- w_SearchByLabel(string='Iranzo', lang='en', langsorder='es|en',
+                      instanceof = 'Q5|Q101352', mode='startswith')
+df <- w_SearchByLabel(string='Iranzo', lang='en', langsorder='en', instanceof = 'Q5',
+                      Pproperty = 'P21|P569|P570', mode='startswith')
+```
+
+#### Search in any position in Label or AltLabel (diacritics and case are ignored)
+If lang=='' search in any language, else the search is performed only in the language indicated.
+```{r echo=TRUE}
+df <- w_SearchByLabel(string='Iranzo', langsorder='es|en', mode='inlabel')
+```
+Search only in Chinese (Simplified) (language code: zh):
+```{r echo=TRUE}
+df <- w_SearchByLabel(string='Iranzo', langsorder='zh|es', lang='zh', mode='inlabel')
+```
+Optional instanceof and Property
+```{r echo=TRUE}
+df <- w_SearchByLabel(string='Iranzo', langsorder='es|en', instanceof = 'Q5',
+                      mode='inlabel')
+df <- w_SearchByLabel(string='Iranzo', langsorder='es|en', instanceof = 'Q5|Q101352',
+                      mode='inlabel')
+df <- w_SearchByLabel(string='Iranzo', langsorder='es|en', instanceof = 'Q5',
+                      Pproperty = 'P21|P569|P570', mode='inlabel')
+```
+
+#### aux: getting a vector of entities (`l`) to use later.
+```{r echo=TRUE}
+df <- w_SearchByLabel(string='Iranzo', langsorder='es|en', mode='inlabel')
+l <- df$entity
+```
+
+#### w_isInstanceOf
+Check if elements in entity_list are instance of a Wikimedia class
+```{r echo=TRUE}
+df <- w_isInstanceOf(entity_list=l, instanceof='Q5')
+# Not TRUE
+df[!df$instanceof_Q5,]
+```
+
+#### w_Wikipedias
+Search for Wikipedia pages in all/some languages
+
+Optional: instanceOF (limit to entities which are instance of a Wikidata class)
+```{r echo=TRUE}
+df <- w_Wikipedias(entity_list=l)
+df <- w_Wikipedias(entity_list=l, wikilangs='es|en|fr')
+df <- w_Wikipedias(entity_list=l, wikilangs='es|en|fr', instanceof="Q5")
+```
+
+#### w_Occupations
+Count entities, or get the entities with that occupation, also get Wikipedia pages
+
+Note: depending on connection speed, nlimit parameter musts be adjusted
+```{r echo=TRUE}
+w_OccupationEntities(Qoc='Q2306091', mode='count') # Qoc for Sociologist
+l  <- w_OccupationEntities(Qoc='Q2306091') # l=entities: vector
+```
+
+```{r echo=TRUE, eval=FALSE}
+lw <- w_OccupationEntities(Qoc='Q2306091', mode='wikipedias') # lw=dataframe
+ # We can obtain the same information using previous function w_Wikipedias:
+ lw2 <- w_Wikipedias(entity_list=l, wikilangs='')
+ # Verifying:
+ all(lw['Q10320558','pages'] == lw2['Q10320558','pages'])
+ # Verifying:
+ all(sort(strsplit(lw['Q9061', 'pages'], '|', fixed = T)[[1]]) ==
+     sort(strsplit(lw2['Q9061', 'pages'], '|', fixed = T)[[1]]))
+```
+
+#### w_isValid.
+Check if the Wikidata entities are valid. A entity is valid if it has a label
+or has a description. If one entity exists but is not valid, is possible that
+it has a redirection to other entity, in that case, the redirection is
+obtained. Other entities may have existed in the past, but they are currently
+deleted.
+```{r echo=TRUE}
+l2 <- append(l, c("Q115637688", "Q105660123"))  # Note: adding two new entities
+v <- w_isValid(l2)
+# Not valid
+v[!v$valid,]
+```
+
+#### w_Property
+Obtain properties of entity_list.
+```{r echo=TRUE}
+p <- w_Property(l, Pproperty = 'P21|P569|P214', langsorder = 'es|en')
+```
+
+#### w_IdentifiersOfAuthority
+Search for Wikidata entities that have an identifier in the Wikidata authority property "Pauthority".
+
+Optional: instanceOf
+
+Example: Pauthority=P4439 (has identifier in the Museo Nacional Centro de Arte Reina Sofía)
+```{r echo=TRUE}
+mncars   <- w_IdentifiersOfAuthority(Pauthority="P4439", langsorder = 'es|en')
+# 1286  [human, groups, etc.]
+mncarsQ5 <- w_IdentifiersOfAuthority(Pauthority="P4439", langsorder = 'es|en',
+                                     instanceof = 'Q5')  # 1280
+# Entities are not 'human' (Q5) [see entityDescription column):
+mncars[!(mncars$entity %in% mncarsQ5$entity),]  # not instance of Q5.
+```
+
+#### w_EntityInfo
+Get some properties of a Wikidata entity.
+```{r echo=TRUE}
+df1 <- w_EntityInfo(entity='Q134644', langsorder = 'es|en')
+# Also a "tiny" version
+df2 <- w_EntityInfo(entity='Q134644', langsorder = 'es|en', mode='tiny')
+# Differences: fields non existing in the tiny row set as "--":
+Aleixandre <- rbind(
+  df1,
+  data.frame(c(df2, sapply(setdiff(names(df1), names(df2)), function(x) "--")),
+             row.names = 'tiny')
+)
+BenHur    <- w_EntityInfo(entity='Q180098', langsorder='es|en',
+                          wikilangs = 'es|fr', mode='film')
+Nosferatu <- w_EntityInfo(entity='Q151895', langsorder='es|en',
+                          wikilangs = 'es|fr|en', mode='film')
+# Nosferatu has a public video:
+Nosferatu$video
+# Combining data-frames:
+films <- rbind(BenHur, Nosferatu)
+```
+
+
+## Examples of WikiMedia functions
+
+#### m_Opensearch
+Search articles that contains any words (note: it is better to use a large string)
+
+Some search profiles:
+```{r echo=TRUE}
+df <- m_Opensearch(string='Duque de Alba', project='es.wikipedia.org',
+                   profile="engine_autoselect", redirects="resolve")
+df <- m_Opensearch(string='Duque de Alba', project='es.wikipedia.org', profile="strict")
+df <- m_Opensearch(string='Duque de Alba', project='es.wikipedia.org', profile="fuzzy")
+```
+
+#### m_reqMediaWiki
+Checks if titles are in a Wikimedia project and returns the Wikidata entity for them, if they have one.
+
+Note that URLdecode("a%CC%8C") is the letter "a" with the combining caron (ǎ)
+```{r echo=TRUE}
+df <- m_reqMediaWiki(c('Max Planck', URLdecode("a%CC%8C"), 'Max', 'Cervante', 'humanist'),
+                        mode='wikidataEntity', project='en.wikipedia.org')
+```
+
+Obtains the redirections of a page (the page itself can be a redirect to other page).
+
+Returns a vector for each title, in each vector the first element is the destiny, rest are all pages that redirect to it.
+```{r echo=TRUE}
+a <- m_reqMediaWiki(c('Cervantes', 'Planck', 'Noexiste'), mode='redirects',
+                    project='es.wikipedia.org')
+a
+```
+
+Gets the URL of de Primary image as a URL of Wikimedia pages.
+
+Gets all URL of files inserted in the pages (images, sounds, videos...), using '|' as separator, and excluding some extensions in the exclude_ext parameter.
+
+Both functions automatically resolve redirects (the destiny is the "normalized" column of the data-frame returned).
+```{r echo=TRUE}
+i <- m_reqMediaWiki(c('Max Planck', URLdecode("a%CC%8C"), 'Max', 'Cervante', 'humanist'),
+                  mode='pagePrimaryImage')
+
+f <- m_reqMediaWiki(c('Max Planck', URLdecode("a%CC%8C"), 'Max', 'Cervante', 'humanist'),
+                  mode='pageFiles', exclude_ext = "svg|webp|xcf")
+```
+
+#### m_Pageviews
+Gets visits that a page have had in a date interval
+
+Optional: redirects
+```{r echo=TRUE}
+v <-  m_Pageviews(article="Cervantes", start="20230101", end="20230501",
+                   project="es.wikipedia.org", granularity="monthly")
+vv <- m_Pageviews(article="Cervantes", start="20230101", end="20230501",
+                   project="es.wikipedia.org", granularity="monthly",
+                   redirects=TRUE)
+```
+
+#### m_XtoolsInfo
+Obtains information (as vector) about an article in the Wikimedia project.
+
+Infotype: articleinfo, prose, links
+
+Optional: redirects
+```{r echo=TRUE}
+x <-  m_XtoolsInfo(article="Cervantes", infotype="articleinfo", project="es.wikipedia.org")
+xx <- m_XtoolsInfo(article="Cervantes", infotype="articleinfo", project="es.wikipedia.org",
+                   redirects=TRUE)
+
+y <-  m_XtoolsInfo(article="Miguel de Cervantes", infotype="links", project="es.wikipedia.org")
+yy <- m_XtoolsInfo(article="Cervantes", infotype="links", project="es.wikipedia.org",
+                    redirects=TRUE)
+```
+
+Gets all information (articleinfo, prose, links).
+```{r echo=TRUE}
+z  <- m_XtoolsInfo(article="Miguel de Cervantes", infotype="all", project="es.wikipedia.org")
+zz <- m_XtoolsInfo(article="Cervantes", infotype="all", project="es.wikipedia.org",
+                       redirects=TRUE)
+```
+
+## Examples using VIAF functions
+
+#### v_AutoSuggest
+Searches authors. Sometimes the same author appears several times, under a different name).
+
+Return a data-frame.
+
+Important: The API returns a maximum of 10 records.
+```{r echo=TRUE}
+v_AutoSuggest('Iranzo')
+v_AutoSuggest('Esparza, María')
+v_AutoSuggest('Escobar, Modesto')
+# Note that four rows are returned, but only two different viafids.
+```
+
+#### v_Search
+Search using CQL_Query
+
+See https://www.oclc.org/developer/api/oclc-apis/viaf/authority-cluster.en.html
+
+```{r echo=TRUE}
+# Auxiliary function that extracts specific information from each record.
+showVIAF <- function(r) {
+  i <- 0
+  for (j in r) {
+    i <- i+1
+    # Get viaf record
+    viaf <- j$record$recordData
+    viafid <- viaf$viafID
+    cat(paste0("-----------\nRecord #",i,"\nSources:\n"))
+    print(v_Extract(viaf, info='sources'))
+    cat("Gender: ");       print(v_Extract(viaf, info='gender'))
+    cat("Dates: ") ;       print(v_Extract(viaf, info='dates'))
+    cat('Occupations: ');  print(v_Extract(viaf, info='occupations'))
+    cat("Titles: ");       print(v_Extract(viaf, info='titles'))
+    cat("Wikipedias: ");   print(v_Extract(viaf, info='wikipedias'))
+  }
+}
+```
+
+Search in any field (cql.any)
+
+Operator is "=": so search all terms and only those ones:
+```{r echo=TRUE}
+CQL_Query <- 'cql.any = "García Iranzo, Juan"'
+r <- v_Search(CQL_Query)
+# r contains complete VIAF records (sometimes seen as a "cluster record",
+# which is unified by combining records from many libraries around the world)
+showVIAF(r)
+```
+
+Shortcut
+```{r echo=TRUE}
+r <- v_Search("García Iranzo, Juan", mode="anyField")
+showVIAF(r)
+```
+
+Search in 1xx, 4xx, 5xx fields of MARC record (local.names)
+
+Operator is "all": search all terms
+```{r echo=TRUE}
+CQL_Query <- 'local.names all "Figuerola"'
+r <- v_Search(CQL_Query)
+```
+
+Shortcut
+```{r echo=TRUE}
+r2 <- v_Search("Figuerola", mode="allNames")
+cat(length(r), length(r2))
+```
+
+Records found exceeds the maximum per request API limit : 250
+```{r echo=TRUE}
+CQL_Query <- 'local.names all "Bolero"'
+r <- v_Search(CQL_Query)
+```
+
+Search in 100, 400, 500 fields of MARC record (local.personalNames)
+
+Operator is "all": search all terms
+```{r echo=TRUE}
+CQL_Query <- 'local.personalNames all "Modesto Escobar"'
+r <- v_Search(CQL_Query)
+showVIAF(r)
+```
+
+v_Search mode=allmainHeadingEl: 1xx fields of MARC record:
+```{r echo=TRUE}
+r <- v_Search("Escobar Mercado, Modesto", mode='allmainHeadingEl')
+```
+
+Search in Titles
+```{r echo=TRUE}
+CQL_Query <- 'local.title all "Los pronósticos electorales con encuestas"'
+r <- v_Search(CQL_Query)
+showVIAF(r)
+```

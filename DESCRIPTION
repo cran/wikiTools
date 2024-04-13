@@ -1,14 +1,15 @@
 Package: wikiTools
 Type: Package
-Version: 0.0.6
-Date: 2022-03-18
+Version: 1.2.4
+Date: 2024-04-12
 Title: Tools for Wikidata and Wikipedia
 Description: A set of wrappers intended to check, read and download information from the Wikimedia sources. It is specifically created to work with names of celebrities, in which case their information and statistics can be downloaded. Additionally, it also builds links and snippets to use in combination with the function gallery() in netCoin package.
 License: GPL-3
 Depends: R (>= 3.5.0)
 Encoding: UTF-8
-Imports: WikidataQueryServiceR (>= 1.0.0), WikidataR (>= 1.4.0), httr,
-        jsonlite, ratelimitr
+Imports: httr, jsonlite, ratelimitr
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
 NeedsCompilation: no
 Authors@R: c( 
     person("Modesto", "Escobar", email = "modesto@usal.es", role = c("aut", "cph","cre"), comment = c(ORCID = "0000-0003-2072-6071")),
@@ -18,8 +19,8 @@ Authors@R: c(
     person("Cristina", "Calvo", email = "cristinacalvolopez@usal.es", role = "aut")
     )
 Maintainer: Modesto Escobar <modesto@usal.es>
-RoxygenNote: 7.1.2
-Packaged: 2022-03-23 18:25:19 UTC; Modesto
+RoxygenNote: 7.3.1
+Packaged: 2024-04-13 11:11:12 UTC; Modesto
 Author: Modesto Escobar [aut, cph, cre]
     (<https://orcid.org/0000-0003-2072-6071>),
   Ángel Zazo [aut],
@@ -27,4 +28,4 @@ Author: Modesto Escobar [aut, cph, cre]
   David Barrios [aut],
   Cristina Calvo [aut]
 Repository: CRAN
-Date/Publication: 2022-03-24 08:40:02 UTC
+Date/Publication: 2024-04-13 11:40:02 UTC
