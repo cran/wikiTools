@@ -49,18 +49,19 @@ df <- w_Wikipedias(entity_list=l, wikilangs='es|en|fr')
 df <- w_Wikipedias(entity_list=l, wikilangs='es|en|fr', instanceof="Q5")
 
 ## ----echo=TRUE----------------------------------------------------------------
-w_OccupationEntities(Qoc='Q2306091', mode='count') # Qoc for Sociologist
-l  <- w_OccupationEntities(Qoc='Q2306091') # l=entities: vector
+w_SearchByOccupation(Qoc="Q2306091", mode='count') # "Q2306091" Qoc for Sociologist
+q <- w_SearchByOccupation(Qoc="Q2306091")
+l <- q$entity
 
 ## ----echo=TRUE, eval=FALSE----------------------------------------------------
-#  lw <- w_OccupationEntities(Qoc='Q2306091', mode='wikipedias') # lw=dataframe
-#   # We can obtain the same information using previous function w_Wikipedias:
-#   lw2 <- w_Wikipedias(entity_list=l, wikilangs='')
-#   # Verifying:
-#   all(lw['Q10320558','pages'] == lw2['Q10320558','pages'])
-#   # Verifying:
-#   all(sort(strsplit(lw['Q9061', 'pages'], '|', fixed = T)[[1]]) ==
-#       sort(strsplit(lw2['Q9061', 'pages'], '|', fixed = T)[[1]]))
+#  lw <- w_SearchByOccupation(Qoc='Q2306091', mode='wikipedias') # lw=dataframe
+#  # We can obtain the same information using previous function w_Wikipedias:
+#  lw2 <- w_Wikipedias(entity_list=l)
+#  # Verifying:
+#  all(lw['Q10320558','pages'] == lw2['Q10320558','pages'])
+#  # Verifying:
+#  all(sort(strsplit(lw['Q9061', 'pages'], '|', fixed = T)[[1]]) ==
+#      sort(strsplit(lw2['Q9061', 'pages'], '|', fixed = T)[[1]]))
 
 ## ----echo=TRUE----------------------------------------------------------------
 l2 <- append(l, c("Q115637688", "Q105660123"))  # Note: adding two new entities
@@ -72,31 +73,23 @@ v[!v$valid,]
 p <- w_Property(l, Pproperty = 'P21|P569|P214', langsorder = 'es|en')
 
 ## ----echo=TRUE----------------------------------------------------------------
-mncars   <- w_IdentifiersOfAuthority(Pauthority="P4439", langsorder = 'es|en')
+mncars   <- w_SearchByAuthority(Pauthority="P4439", langsorder = 'es|en')
 # 1286  [human, groups, etc.]
-mncarsQ5 <- w_IdentifiersOfAuthority(Pauthority="P4439", langsorder = 'es|en',
+mncarsQ5 <- w_SearchByAuthority(Pauthority="P4439", langsorder = 'es|en',
                                      instanceof = 'Q5')  # 1280
 # Entities are not 'human' (Q5) [see entityDescription column):
 mncars[!(mncars$entity %in% mncarsQ5$entity),]  # not instance of Q5.
 
 ## ----echo=TRUE----------------------------------------------------------------
-df1 <- w_EntityInfo(entity='Q134644', langsorder = 'es|en')
-# Also a "tiny" version
-df2 <- w_EntityInfo(entity='Q134644', langsorder = 'es|en', mode='tiny')
-# Differences: fields non existing in the tiny row set as "--":
-Aleixandre <- rbind(
-  df1,
-  data.frame(c(df2, sapply(setdiff(names(df1), names(df2)), function(x) "--")),
-             row.names = 'tiny')
-)
-BenHur    <- w_EntityInfo(entity='Q180098', langsorder='es|en',
-                          wikilangs = 'es|fr', mode='film')
-Nosferatu <- w_EntityInfo(entity='Q151895', langsorder='es|en',
-                          wikilangs = 'es|fr|en', mode='film')
-# Nosferatu has a public video:
-Nosferatu$video
-# Combining data-frames:
-films <- rbind(BenHur, Nosferatu)
+df <- w_EntityInfo(entity_list='Q134644', langsorder='es|en')
+df <- w_EntityInfo(entity_list='Q134644', langsorder='es|en', wikilangs='es|en|fr')
+df <- w_EntityInfo(c('Q270510', 'Q1675466', 'Q24871'), mode='film', langsorder='es|en', wikilangs='es|en|fr')
+# Search string 'abba' inlabel
+w <- w_SearchByLabel('abba', mode='inlabel', langsorder = '', instanceof = 'Q5')
+df <- w_EntityInfo(w$entity, langsorder='en', wikilangs='en|es|fr', debug='info')
+# Search 3D films
+w <- w_SearchByInstanceof(instanceof='Q229390', langsorder = 'en|es', debug = 'info')
+df <- w_EntityInfo(w$entity, mode="film", langsorder='en', wikilangs='en', debug='info')
 
 ## ----echo=TRUE----------------------------------------------------------------
 df <- m_Opensearch(string='Duque de Alba', project='es.wikipedia.org',
