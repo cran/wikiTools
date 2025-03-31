@@ -1,5 +1,5 @@
 ## ----eval=FALSE---------------------------------------------------------------
-#  install.packages("wikiTools")
+# install.packages("wikiTools")
 
 ## ----echo=TRUE----------------------------------------------------------------
 library(wikiTools)
@@ -54,14 +54,14 @@ q <- w_SearchByOccupation(Qoc="Q2306091")
 l <- q$entity
 
 ## ----echo=TRUE, eval=FALSE----------------------------------------------------
-#  lw <- w_SearchByOccupation(Qoc='Q2306091', mode='wikipedias') # lw=dataframe
-#  # We can obtain the same information using previous function w_Wikipedias:
-#  lw2 <- w_Wikipedias(entity_list=l)
-#  # Verifying:
-#  all(lw['Q10320558','pages'] == lw2['Q10320558','pages'])
-#  # Verifying:
-#  all(sort(strsplit(lw['Q9061', 'pages'], '|', fixed = T)[[1]]) ==
-#      sort(strsplit(lw2['Q9061', 'pages'], '|', fixed = T)[[1]]))
+# lw <- w_SearchByOccupation(Qoc='Q2306091', mode='wikipedias') # lw=dataframe
+# # We can obtain the same information using previous function w_Wikipedias:
+# lw2 <- w_Wikipedias(entity_list=l)
+# # Verifying:
+# all(lw['Q10320558','pages'] == lw2['Q10320558','pages'])
+# # Verifying:
+# all(sort(strsplit(lw['Q9061', 'pages'], '|', fixed = T)[[1]]) ==
+#     sort(strsplit(lw2['Q9061', 'pages'], '|', fixed = T)[[1]]))
 
 ## ----echo=TRUE----------------------------------------------------------------
 l2 <- append(l, c("Q115637688", "Q105660123"))  # Note: adding two new entities

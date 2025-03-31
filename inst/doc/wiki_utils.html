@@ -12,7 +12,7 @@
 
 <meta name="author" content="Angel Zazo, Department of Computer Science and Automatics, University of Salamanca" />
 
-<meta name="date" content="2024-07-26" />
+<meta name="date" content="2025-03-31" />
 
 <title>Examples with wiki_utils</title>
 
@@ -62,7 +62,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -341,7 +341,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Examples with wiki_utils</h1>
 <h4 class="author">Angel Zazo, Department of Computer Science and
 Automatics, University of Salamanca</h4>
-<h4 class="date">2024-07-26</h4>
+<h4 class="date">2025-03-31</h4>
 
 
 
@@ -471,6 +471,7 @@ class</p>
 ## Q45976259   Q45976259          Q101352         FALSE
 ## Q45987474   Q45987474         Q4167410         FALSE
 ## Q47034606   Q47034606         Q1642895         FALSE
+## Q67289998   Q67289998           Q38720         FALSE
 ## Q83296470   Q83296470                          FALSE
 ## Q85684513   Q85684513 Q28564|Q12317349         FALSE
 ## Q97101007   Q97101007          Q245117         FALSE
@@ -478,7 +479,8 @@ class</p>
 ## Q111015546 Q111015546             Q571         FALSE
 ## Q117783790 Q117783790          Q811430         FALSE
 ## Q125544306 Q125544306        Q47461344         FALSE
-## Q125544313 Q125544313         Q3331189         FALSE</code></pre>
+## Q125544313 Q125544313         Q3331189         FALSE
+## Q131370779 Q131370779           Q79007         FALSE</code></pre>
 </div>
 <div id="w_wikipedias" class="section level4">
 <h4>w_Wikipedias</h4>
@@ -496,7 +498,7 @@ Wikipedia pages</p>
 <p>Note: depending on connection speed, nlimit parameter musts be
 adjusted</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&quot;Q2306091&quot;</span>, <span class="at">mode=</span><span class="st">&#39;count&#39;</span>) <span class="co"># &quot;Q2306091&quot; Qoc for Sociologist</span></span></code></pre></div>
-<pre><code>## [1] 19614</code></pre>
+<pre><code>## [1] 20846</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&quot;Q2306091&quot;</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>l <span class="ot">&lt;-</span> q<span class="sc">$</span>entity</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>lw <span class="ot">&lt;-</span> <span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&#39;Q2306091&#39;</span>, <span class="at">mode=</span><span class="st">&#39;wikipedias&#39;</span>) <span class="co"># lw=dataframe</span></span>
@@ -520,8 +522,8 @@ but they are currently deleted.</p>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co"># Not valid</span></span>
 <span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>v[<span class="sc">!</span>v<span class="sc">$</span>valid,]</span></code></pre></div>
 <pre><code>##                entity valid instanceof redirection
-## Q115637688 Q115637688 FALSE                       
-## Q105660123 Q105660123 FALSE              Q97352588</code></pre>
+## Q105660123 Q105660123 FALSE              Q97352588
+## Q115637688 Q115637688 FALSE</code></pre>
 </div>
 <div id="w_property" class="section level4">
 <h4>w_Property</h4>
@@ -545,23 +547,23 @@ Centro de Arte Reina Sofía)</p>
 ## Q27657364   Q27657364 Midnight Gardening (Jardinería a medianoche)
 ## Q105687869 Q105687869            João Maria Gusmão and Pedro Paiva
 ## Q4517304     Q4517304                                  Chto Delat?
-## Q317874       Q317874                                     Ant Farm
 ## Q20102460   Q20102460                        Agustín Parejo School
 ## Q5849776     Q5849776                                 Estrujenbank
+## Q317874       Q317874                                     Ant Farm
 ##                                   entityDescription        instanceof
 ## Q27657364                 cuadro de Jerónimo Elespe          Q3305213
 ## Q105687869                  Portuguese artistic duo         Q85942930
 ## Q4517304                     Russian art collective          Q1400264
-## Q317874    American art and architecture collective Q1400264|Q4387609
 ## Q20102460                                                    Q1400264
 ## Q5849776                        colectivo artístico          Q1400264
+## Q317874    American art and architecture collective Q1400264|Q4387609
 ##                                          instanceofLabel                 P4439
 ## Q27657364                                        pintura       elespe-jeronimo
 ## Q105687869                                 duo artístico     gusmao-joao-maria
 ## Q4517304                           colectivo de artistas            chto-delat
-## Q317874    colectivo de artistas|estudio de arquitectura              ant-farm
 ## Q20102460                          colectivo de artistas agustin-parejo-school
-## Q5849776                           colectivo de artistas          estrujenbank</code></pre>
+## Q5849776                           colectivo de artistas          estrujenbank
+## Q317874    colectivo de artistas|estudio de arquitectura              ant-farm</code></pre>
 </div>
 <div id="w_entityinfo" class="section level4">
 <h4>w_EntityInfo</h4>
@@ -670,63 +672,16 @@ under a different name).</p>
 <p>Return a data-frame.</p>
 <p>Important: The API returns a maximum of 10 records.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">v_AutoSuggest</span>(<span class="st">&#39;Iranzo&#39;</span>)</span></code></pre></div>
-<pre><code>##       term                                                  score  nametype  
-##  [1,] &quot;Iranzo, Antonio, 1930-2003&quot;                          &quot;1577&quot; &quot;personal&quot;
-##  [2,] &quot;Iranzo, Carmen&quot;                                      &quot;1439&quot; &quot;personal&quot;
-##  [3,] &quot;Iranzo, Miguel Lucas de&quot;                             &quot;1392&quot; &quot;personal&quot;
-##  [4,] &quot;Iranzo, G., 1918-1998&quot;                               &quot;1375&quot; &quot;personal&quot;
-##  [5,] &quot;Iranzo Muñío, María Teresa, 19..-&quot;                   &quot;1346&quot; &quot;personal&quot;
-##  [6,] &quot;Iranzo Simón, Víctor 1850-1890&quot;                      &quot;1226&quot; &quot;personal&quot;
-##  [7,] &quot;Iranzo, Olga&quot;                                        &quot;1220&quot; &quot;personal&quot;
-##  [8,] &quot;Iranzo Benedito, Manuel, 1867-1921&quot;                  &quot;1214&quot; &quot;personal&quot;
-##  [9,] &quot;Iranzo Bielsa, José, el Pastor de Andorra 1915-2016&quot; &quot;1170&quot; &quot;personal&quot;
-## [10,] &quot;Iranzo Martín, Juan Emilio 1956-&quot;                    &quot;1162&quot; &quot;personal&quot;
-##       viafid                
-##  [1,] &quot;87262213&quot;            
-##  [2,] &quot;46775630&quot;            
-##  [3,] &quot;3268989&quot;             
-##  [4,] &quot;88012748&quot;            
-##  [5,] &quot;48297869&quot;            
-##  [6,] &quot;87244676&quot;            
-##  [7,] &quot;49150565569906250223&quot;
-##  [8,] &quot;87100730&quot;            
-##  [9,] &quot;63243927&quot;            
-## [10,] &quot;58295559&quot;</code></pre>
+<pre><code>## NULL</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">v_AutoSuggest</span>(<span class="st">&#39;Esparza, María&#39;</span>)</span></code></pre></div>
-<pre><code>##       term                                                                    
-##  [1,] &quot;Esparza, María 1898-1978&quot;                                              
-##  [2,] &quot;Esparza, María Jesús&quot;                                                  
-##  [3,] &quot;Esparza, Mariana Ochoa&quot;                                                
-##  [4,] &quot;Esparza, María Elena&quot;                                                  
-##  [5,] &quot;Esparza, Maria, 19..-...., auteure d&#39;une thèse de sciences biologiques&quot;
-##  [6,] &quot;Esparza, María Del Rosario Campos-&quot;                                    
-##  [7,] &quot;Esparza, María Sanjuana Salazar&quot;                                       
-##  [8,] &quot;Esparza, María&quot;                                                        
-##  [9,] &quot;Esparza, María del Carmen Hernández&quot;                                   
-## [10,] &quot;Esparza, María de los Angeles Cervantes&quot;                               
-##       score  nametype   viafid                  
-##  [1,] &quot;1022&quot; &quot;personal&quot; &quot;1335154741632153110006&quot;
-##  [2,] &quot;1013&quot; &quot;personal&quot; &quot;9147370712141442276&quot;   
-##  [3,] &quot;1012&quot; &quot;personal&quot; &quot;67961098&quot;              
-##  [4,] &quot;1012&quot; &quot;personal&quot; &quot;48986872&quot;              
-##  [5,] &quot;1011&quot; &quot;personal&quot; &quot;250164959833724021614&quot; 
-##  [6,] &quot;515&quot;  &quot;personal&quot; &quot;118153833232264332271&quot; 
-##  [7,] &quot;509&quot;  &quot;personal&quot; &quot;121210664&quot;             
-##  [8,] &quot;509&quot;  &quot;personal&quot; &quot;466160667844803560008&quot; 
-##  [9,] &quot;508&quot;  &quot;personal&quot; &quot;103543869&quot;             
-## [10,] &quot;508&quot;  &quot;personal&quot; &quot;31757197&quot;</code></pre>
+<pre><code>## NULL</code></pre>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">v_AutoSuggest</span>(<span class="st">&#39;Escobar, Modesto&#39;</span>)</span></code></pre></div>
-<pre><code>##      term                                  score  nametype   viafid    
-## [1,] &quot;Escobar, Modesto, 1958-&quot;             &quot;1286&quot; &quot;personal&quot; &quot;75898534&quot;
-## [2,] &quot;Escobar, Modesto&quot;                    &quot;1278&quot; &quot;personal&quot; &quot;75898534&quot;
-## [3,] &quot;Escobar, Modesto, 1940-&quot;             &quot;1246&quot; &quot;personal&quot; &quot;6744770&quot; 
-## [4,] &quot;Escobar, Modesto, (Escobar Espinar)&quot; &quot;628&quot;  &quot;personal&quot; &quot;6744770&quot;</code></pre>
+<pre><code>## NULL</code></pre>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># Note that four rows are returned, but only two different viafids.</span></span></code></pre></div>
 </div>
 <div id="v_search" class="section level4">
 <h4>v_Search</h4>
 <p>Search using CQL_Query</p>
-<p>See <a href="https://www.oclc.org/developer/api/oclc-apis/viaf/authority-cluster.en.html" class="uri">https://www.oclc.org/developer/api/oclc-apis/viaf/authority-cluster.en.html</a></p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co"># Auxiliary function that extracts specific information from each record.</span></span>
 <span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>showVIAF <span class="ot">&lt;-</span> <span class="cf">function</span>(r) {</span>
 <span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>  i <span class="ot">&lt;-</span> <span class="dv">0</span></span>
@@ -751,298 +706,32 @@ under a different name).</p>
 <span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="co"># r contains complete VIAF records (sometimes seen as a &quot;cluster record&quot;,</span></span>
 <span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a><span class="co"># which is unified by combining records from many libraries around the world)</span></span>
 <span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
-<pre><code>## -----------
-## Record #1
-## Sources:
-##                                       text                BNC      BNE
-## 1                    Iranzo, G., 1918-1998 981058518730306706 XX990548
-## 2            García Iranzo, Juan 1918-1998               &lt;NA&gt;     &lt;NA&gt;
-## 3 Juan García Iranzo historietista español               &lt;NA&gt;     &lt;NA&gt;
-##               ISNI        DNB      WKP
-## 1 0000000061151209       &lt;NA&gt;     &lt;NA&gt;
-## 2             &lt;NA&gt; 1280548487     &lt;NA&gt;
-## 3             &lt;NA&gt;       &lt;NA&gt; Q9015544
-## Gender: [1] &quot;male&quot;
-## Dates: [1] &quot;1918:1998&quot;
-## Occupations: NULL
-## Titles:  [1] &quot;¡Acorralados!&quot;                             
-##  [2] &quot;Antonio Barbas Heredia&quot;                    
-##  [3] &quot;Asalto a la \&quot;Unión Pacific\&quot;&quot;             
-##  [4] &quot;Barranco amarillo&quot;                         
-##  [5] &quot;Burla a los rufianes&quot;                      
-##  [6] &quot;El Cachorro&quot;                               
-##  [7] &quot;El Capitán coraje&quot;                         
-##  [8] &quot;Caravana de héroes&quot;                        
-##  [9] &quot;¡Cargamento de ébano!&quot;                     
-## [10] &quot;¡Crueldad corsaria!&quot;                       
-## [11] &quot;Derroche de audacia&quot;                       
-## [12] &quot;El desierto de las calaveras&quot;              
-## [13] &quot;Dick Relámpago : el rey de la pradera&quot;     
-## [14] &quot;La diligencia de San Luis&quot;                 
-## [15] &quot;Duelo indio&quot;                               
-## [16] &quot;La familia Pepe&quot;                           
-## [17] &quot;Fort Dakota&quot;                               
-## [18] &quot;Fuera de la ley&quot;                           
-## [19] &quot;¡A hierro y fuego!&quot;                        
-## [20] &quot;El Hombre de los espacios&quot;                 
-## [21] &quot;Iranzo : història viva del nostre dibuix&quot;  
-## [22] &quot;Jugando con la muerte&quot;                     
-## [23] &quot;¡A la desesperada!&quot;                        
-## [24] &quot;¡¡Llegan los indios!!&quot;                     
-## [25] &quot;¡Llegar a tiempo!&quot;                         
-## [26] &quot;La mayor recompensa&quot;                       
-## [27] &quot;Nervios de acero&quot;                          
-## [28] &quot;Pancho Colate&quot;                             
-## [29] &quot;El pirata desconocido ; La ciudad del gong&quot;
-## [30] &quot;Plan diabólico&quot;                            
-## [31] &quot;El poste de los tormentos&quot;                 
-## [32] &quot;La pradera en llamas&quot;                      
-## [33] &quot;¡¡Prisioneros!!&quot;                           
-## [34] &quot;¡La Reyerta!&quot;                              
-## [35] &quot;Rumbo a Angola&quot;                            
-## [36] &quot;Saldando cuentas&quot;                          
-## [37] &quot;A sangre y fuego&quot;                          
-## [38] &quot;Slim \&quot;Muescas\&quot;&quot;                          
-## [39] &quot;El terremoto&quot;                              
-## [40] &quot;Tres contra mil&quot;                           
-## [41] &quot;¡El triunfo de un héroe!&quot;                  
-## [42] &quot;Última esperanza&quot;                          
-## [43] &quot;La verdadera historia de Almuñecar&quot;        
-## Wikipedias: [1] &quot;https://ca.wikipedia.org/wiki/Juan_García_Iranzo&quot;
-## [2] &quot;https://es.wikipedia.org/wiki/Juan_García_Iranzo&quot;
-## [3] &quot;https://fr.wikipedia.org/wiki/G._Iranzo&quot;</code></pre>
 <p>Shortcut</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;García Iranzo, Juan&quot;</span>, <span class="at">mode=</span><span class="st">&quot;anyField&quot;</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
-<pre><code>## -----------
-## Record #1
-## Sources:
-##                                       text                BNC      BNE
-## 1                    Iranzo, G., 1918-1998 981058518730306706 XX990548
-## 2            García Iranzo, Juan 1918-1998               &lt;NA&gt;     &lt;NA&gt;
-## 3 Juan García Iranzo historietista español               &lt;NA&gt;     &lt;NA&gt;
-##               ISNI        DNB      WKP
-## 1 0000000061151209       &lt;NA&gt;     &lt;NA&gt;
-## 2             &lt;NA&gt; 1280548487     &lt;NA&gt;
-## 3             &lt;NA&gt;       &lt;NA&gt; Q9015544
-## Gender: [1] &quot;male&quot;
-## Dates: [1] &quot;1918:1998&quot;
-## Occupations: NULL
-## Titles:  [1] &quot;¡Acorralados!&quot;                             
-##  [2] &quot;Antonio Barbas Heredia&quot;                    
-##  [3] &quot;Asalto a la \&quot;Unión Pacific\&quot;&quot;             
-##  [4] &quot;Barranco amarillo&quot;                         
-##  [5] &quot;Burla a los rufianes&quot;                      
-##  [6] &quot;El Cachorro&quot;                               
-##  [7] &quot;El Capitán coraje&quot;                         
-##  [8] &quot;Caravana de héroes&quot;                        
-##  [9] &quot;¡Cargamento de ébano!&quot;                     
-## [10] &quot;¡Crueldad corsaria!&quot;                       
-## [11] &quot;Derroche de audacia&quot;                       
-## [12] &quot;El desierto de las calaveras&quot;              
-## [13] &quot;Dick Relámpago : el rey de la pradera&quot;     
-## [14] &quot;La diligencia de San Luis&quot;                 
-## [15] &quot;Duelo indio&quot;                               
-## [16] &quot;La familia Pepe&quot;                           
-## [17] &quot;Fort Dakota&quot;                               
-## [18] &quot;Fuera de la ley&quot;                           
-## [19] &quot;¡A hierro y fuego!&quot;                        
-## [20] &quot;El Hombre de los espacios&quot;                 
-## [21] &quot;Iranzo : història viva del nostre dibuix&quot;  
-## [22] &quot;Jugando con la muerte&quot;                     
-## [23] &quot;¡A la desesperada!&quot;                        
-## [24] &quot;¡¡Llegan los indios!!&quot;                     
-## [25] &quot;¡Llegar a tiempo!&quot;                         
-## [26] &quot;La mayor recompensa&quot;                       
-## [27] &quot;Nervios de acero&quot;                          
-## [28] &quot;Pancho Colate&quot;                             
-## [29] &quot;El pirata desconocido ; La ciudad del gong&quot;
-## [30] &quot;Plan diabólico&quot;                            
-## [31] &quot;El poste de los tormentos&quot;                 
-## [32] &quot;La pradera en llamas&quot;                      
-## [33] &quot;¡¡Prisioneros!!&quot;                           
-## [34] &quot;¡La Reyerta!&quot;                              
-## [35] &quot;Rumbo a Angola&quot;                            
-## [36] &quot;Saldando cuentas&quot;                          
-## [37] &quot;A sangre y fuego&quot;                          
-## [38] &quot;Slim \&quot;Muescas\&quot;&quot;                          
-## [39] &quot;El terremoto&quot;                              
-## [40] &quot;Tres contra mil&quot;                           
-## [41] &quot;¡El triunfo de un héroe!&quot;                  
-## [42] &quot;Última esperanza&quot;                          
-## [43] &quot;La verdadera historia de Almuñecar&quot;        
-## Wikipedias: [1] &quot;https://ca.wikipedia.org/wiki/Juan_García_Iranzo&quot;
-## [2] &quot;https://es.wikipedia.org/wiki/Juan_García_Iranzo&quot;
-## [3] &quot;https://fr.wikipedia.org/wiki/G._Iranzo&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;García Iranzo, Juan&quot;</span>, <span class="at">mode=</span><span class="st">&quot;anyField&quot;</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
 <p>Search in 1xx, 4xx, 5xx fields of MARC record (local.names)</p>
 <p>Operator is “all”: search all terms</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.names all &quot;Figuerola&quot;&#39;</span></span>
-<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.names all &quot;Figuerola&quot;&#39;</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span></code></pre></div>
 <p>Shortcut</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;Figuerola&quot;</span>, <span class="at">mode=</span><span class="st">&quot;allNames&quot;</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">length</span>(r), <span class="fu">length</span>(r2))</span></code></pre></div>
-<pre><code>## 211 211</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;Figuerola&quot;</span>, <span class="at">mode=</span><span class="st">&quot;allNames&quot;</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">length</span>(r), <span class="fu">length</span>(r2))</span></code></pre></div>
+<pre><code>## 0 0</code></pre>
 <p>Records found exceeds the maximum per request API limit : 250</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.names all &quot;Bolero&quot;&#39;</span></span>
-<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.names all &quot;Bolero&quot;&#39;</span></span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span></code></pre></div>
 <p>Search in 100, 400, 500 fields of MARC record
 (local.personalNames)</p>
 <p>Operator is “all”: search all terms</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.personalNames all &quot;Modesto Escobar&quot;&#39;</span></span>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.personalNames all &quot;Modesto Escobar&quot;&#39;</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
+<p>v_Search mode=allmainHeadingEl: 1xx fields of MARC record:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;Escobar Mercado, Modesto&quot;</span>, <span class="at">mode=</span><span class="st">&#39;allmainHeadingEl&#39;</span>)</span></code></pre></div>
+<p>Search in Titles</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.title all &quot;Los pronósticos electorales con encuestas&quot;&#39;</span></span>
 <span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
 <span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
-<pre><code>## -----------
-## Record #1
-## Sources:
-##                                 text           LC
-## 1 Escobar Acosta, Modesto, 1877-1936 n 2023023856
-## Gender: [1] &quot;u&quot;
-## Dates: [1] &quot;1877:1936&quot;
-## Occupations: NULL
-## Titles: [1] &quot;Modesto Escobar Acosta, 2022:&quot;
-## Wikipedias: NULL
-## -----------
-## Record #2
-## Sources:
-##                       text                BNC       BNE       DNB
-## 1  Escobar, Modesto, 1958- 981058511260506706 XX1104942 171872282
-## 2 Escobar Mercado, Modesto               &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-## 3         Escobar, Modesto               &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-##               ISNI     SUDOC          LC
-## 1             &lt;NA&gt;      &lt;NA&gt;        &lt;NA&gt;
-## 2 0000000059273899 184094852        &lt;NA&gt;
-## 3             &lt;NA&gt;      &lt;NA&gt; no 95018832
-## Gender: [1] &quot;male&quot;
-## Dates: [1] &quot;1958:0&quot;
-## Occupations:             LC
-## 1 sociologists
-## Titles:  [1] &quot;Análisis de datos con Stata&quot;                                                                 
-##  [2] &quot;El Análisis de segmentación : técnicas y aplicaciones de los árboles de clasificación&quot;       
-##  [3] &quot;Análisis gráfico/exploratorio&quot;                                                               
-##  [4] &quot;Autoempleo y actividades empresariales de las mujeres en España&quot;                             
-##  [5] &quot;Deviation, inequality, polarization : some measures of social diversity&quot;                     
-##  [6] &quot;Entonces, más allá del viento&quot;                                                               
-##  [7] &quot;El Futuro de los medios de comunicación ante el impacto de las nuevas tecnologías&quot;           
-##  [8] &quot;La Identidad social del parado&quot;                                                              
-##  [9] &quot;Los naufragos del \&quot;Jonathan\&quot;&quot;                                                              
-## [10] &quot;Los pronósticos electorales con encuestas : elecciones generales en España (1979-2011)&quot;      
-## [11] &quot;Socioestadística : introducción a la estadística en sociología&quot;                              
-## [12] &quot;Works or union councils? : the representative system in medium and large sized Spanish firms&quot;
-## Wikipedias: NULL
-## -----------
-## Record #3
-## Sources:
-##                                          text          LC             ISNI
-## 1 Escobar A., Modesto (Escobar Aquino), 1940- n  85099351             &lt;NA&gt;
-## 2               Escobar Aquino, Modesto 1940-        &lt;NA&gt; 0000000028458030
-## Gender: [1] &quot;u&quot;
-## Dates: [1] &quot;1940:0&quot;
-## Occupations: NULL
-## Titles: [1] &quot;Don Juan Pitogüe&quot;                    
-## [2] &quot;Entonces, más allá del viento, 1984:&quot;
-## [3] &quot;Poems&quot;                               
-## [4] &quot;Poesía completa en castellano&quot;       
-## [5] &quot;Savia caminante&quot;                     
-## [6] &quot;Siete en punto.&quot;                     
-## Wikipedias: NULL
-## -----------
-## Record #4
-## Sources:
-##                                 text     SUDOC                BNC       BNE
-## 1           Escobar Espinar, Modesto 060233524 981058511260406706      &lt;NA&gt;
-## 2     Escobar Espinar, Modesto 1940-      &lt;NA&gt;               &lt;NA&gt; XX1317992
-## 3                   Escobar, Modesto      &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;
-## 4            Escobar, Modesto, 1940-      &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;
-## 5                    Modesto Escobar      &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;
-## 6      Escobar Aquino, Modesto 1940-      &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;
-## 7 Escobar, Modesto (Escobar Espinar)      &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;
-##               ISNI       NKC       WKP        DNB           LC
-## 1             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
-## 2             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
-## 3 0000000059339384      &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
-## 4             &lt;NA&gt; xx0199364      &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
-## 5             &lt;NA&gt;      &lt;NA&gt; Q93432076       &lt;NA&gt;         &lt;NA&gt;
-## 6             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt; 1057399809         &lt;NA&gt;
-## 7             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt; n 2001099447
-## Gender: [1] &quot;male&quot;
-## Dates: [1] &quot;1940:0&quot;
-## Occupations:                     NKC
-## 1 vysokoskolsti ucitele
-## 2         stomatologove
-## 3               basnici
-## Titles: [1] &quot;El comercio electrónico perspectiva presente y futura en España&quot;                                  
-## [2] &quot;La empresa en la red&quot;                                                                             
-## [3] &quot;Gestión de la cadena de suministro estudio de prospectiva&quot;                                        
-## [4] &quot;Monográfico Green jobs marco normativo y competencial de la economía verde en España, 2010&quot;       
-## [5] &quot;¿Por qué somos así? : la historia explica la baja implicación del español en ciencia y tecnología&quot;
-## [6] &quot;La sociedad de la información introducción a la convergencia tecnológica y empresarial&quot;           
-## [7] &quot;Sociedad de la información las marcas y el comercio electrónico&quot;                                  
-## [8] &quot;Teletrabajo incidencia social y económica : posibilidades en España&quot;                              
-## [9] &quot;TIC, tendencias de evolución&quot;                                                                     
-## Wikipedias: NULL</code></pre>
-<p>v_Search mode=allmainHeadingEl: 1xx fields of MARC record:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;Escobar Mercado, Modesto&quot;</span>, <span class="at">mode=</span><span class="st">&#39;allmainHeadingEl&#39;</span>)</span></code></pre></div>
-<p>Search in Titles</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.title all &quot;Los pronósticos electorales con encuestas&quot;&#39;</span></span>
-<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
-<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
-<pre><code>## -----------
-## Record #1
-## Sources:
-##                      text             ISNI        DNB     SUDOC       BNE
-## 1 Cilleros Conde, Roberto 0000000444360374 1081650478 184094968 XX5449768
-## Gender: [1] &quot;male&quot;
-## Dates: [1] &quot;0:0&quot;
-## Occupations: NULL
-## Titles: [1] &quot;Los pronósticos electorales con encuestas : elecciones generales en España (1979-2011)&quot;
-## Wikipedias: NULL
-## -----------
-## Record #2
-## Sources:
-##                       text                BNC       BNE       DNB
-## 1  Escobar, Modesto, 1958- 981058511260506706 XX1104942 171872282
-## 2 Escobar Mercado, Modesto               &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-## 3         Escobar, Modesto               &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-##               ISNI     SUDOC          LC
-## 1             &lt;NA&gt;      &lt;NA&gt;        &lt;NA&gt;
-## 2 0000000059273899 184094852        &lt;NA&gt;
-## 3             &lt;NA&gt;      &lt;NA&gt; no 95018832
-## Gender: [1] &quot;male&quot;
-## Dates: [1] &quot;1958:0&quot;
-## Occupations:             LC
-## 1 sociologists
-## Titles:  [1] &quot;Análisis de datos con Stata&quot;                                                                 
-##  [2] &quot;El Análisis de segmentación : técnicas y aplicaciones de los árboles de clasificación&quot;       
-##  [3] &quot;Análisis gráfico/exploratorio&quot;                                                               
-##  [4] &quot;Autoempleo y actividades empresariales de las mujeres en España&quot;                             
-##  [5] &quot;Deviation, inequality, polarization : some measures of social diversity&quot;                     
-##  [6] &quot;Entonces, más allá del viento&quot;                                                               
-##  [7] &quot;El Futuro de los medios de comunicación ante el impacto de las nuevas tecnologías&quot;           
-##  [8] &quot;La Identidad social del parado&quot;                                                              
-##  [9] &quot;Los naufragos del \&quot;Jonathan\&quot;&quot;                                                              
-## [10] &quot;Los pronósticos electorales con encuestas : elecciones generales en España (1979-2011)&quot;      
-## [11] &quot;Socioestadística : introducción a la estadística en sociología&quot;                              
-## [12] &quot;Works or union councils? : the representative system in medium and large sized Spanish firms&quot;
-## Wikipedias: NULL
-## -----------
-## Record #3
-## Sources:
-##                   text             ISNI           LC                BNC
-## 1       Rivière, Jaime 0000000370165778 n 2002118142 981058515263906706
-## 2 Rivière Gómez, Jaime             &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;
-##       SUDOC
-## 1      &lt;NA&gt;
-## 2 184094917
-## Gender: [1] &quot;u&quot;
-## Dates: [1] &quot;0:0&quot;
-## Occupations: NULL
-## Titles: [1] &quot;Abandono temprano de la educación y la formación : cifras y políticas [Número dedicat]&quot;
-## [2] &quot;Cultura económica : actitudes ante el Estado y el mercado en España&quot;                   
-## [3] &quot;Desviació i control social.&quot;                                                           
-## [4] &quot;Desviación y control social&quot;                                                           
-## [5] &quot;Fracaso y abandono escolar en España&quot;                                                  
-## [6] &quot;Los pronósticos electorales con encuestas : elecciones generales en España (1979-2011)&quot;
-## Wikipedias: NULL</code></pre>
 </div>
 </div>
 

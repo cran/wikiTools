@@ -17,7 +17,7 @@ user_agent <- paste('wikiTools Package, ', R.version.string)
 MW_LIMIT <- 50
 
 # VIAF API restriction is 250 maximum returned records.
-# See https://www.oclc.org/developer/api/oclc-apis/viaf/authority-cluster.en.html
+# See https://developer.api.oclc.org/viaf-api#/Authority%20Cluster
 VIAF_LIMIT <- 250
 
 #' Limits the rate at which a function will execute
@@ -1658,7 +1658,7 @@ w_EntityInfo <- function(entity_list, mode='default', langsorder='',
     j <- reqMediaWiki(query=query, project="www.wikidata.org", debug=debug)
     #
     if (is.null(j) || is.null(j$success) || j$success != 1)
-      stop(paste0("Error in mw_EntityInfo(): reqMediaWiki returns an improper JSON."))
+      stop(paste0("Error in w_EntityInfo: reqMediaWiki returns an improper JSON."))
     #
     entities <- j$entities
     for (qid in names(entities)) {
@@ -1755,7 +1755,7 @@ w_EntityInfo <- function(entity_list, mode='default', langsorder='',
             v <- paste0(value$amount, ' : ', unit)
           }
           else
-            cat(paste0("WARNING mw_EntityInfo: valuetype ", valuetype, " not implemented"), file=stderr())
+            cat(paste0("WARNING w_EntityInfo: valuetype ", valuetype, " not implemented"), file=stderr())
           #
           # Check reviewers for P444 (review score)
           if (f=='P444' && !is.null(item$qualifiers) && !is.null(item$qualifiers$P447)) {
@@ -1876,37 +1876,39 @@ w_EntityInfo <- function(entity_list, mode='default', langsorder='',
     if (debug!=FALSE)
       cat(paste0("INFO: Searching labels for Wikidata entities.\n"), file=stderr())
     labels <- w_LabelDesc(qidsoflabels, what='L', langsorder=langsorder, debug=debug)
-    # create a dict of labels for fast allocating
-    labelsdict <- collections::dict(items=labels$label, keys=rownames(labels))
-    # Add labels to entities
-    for (qid in names(d)) {
-      data <- d[[qid]]
-      for (fname in data$keys()) {
-        if (is.na(data$get(fname)))
-          next
-        if (endsWith(fname,'Q') && !(fname %in% c('bplaceQ', 'dplaceQ', 'bcountryQ', 'dcountryQ'))) {
-          # Get the correct field (without "Q")
-          fnn <- sub("^(.+)Q$","\\1", fname)
-          # Replace all occurrences of Qxxx in those fields
-          qx <- strsplit(data$get(fnn), '|', fixed = T)[[1]]
-          labelsx <- lapply(qx, function(x) {labelsdict$get(x)})
-          d[[qid]]$set(fnn, paste0(labelsx, collapse='|'))
-        }
-        if (fname == 'duration' && !is.na(data$get('duration'))) {     # data['duration'] = '+125 (Q7727)'
-          duration <- data$get('duration')
-          if (grepl('Q\\d+', duration))
-            durationq <- regmatches(duration, regexec('Q\\d+', duration))[[1]]
-          data$set('duration', sub(': Q\\d+', labelsdict$get(durationq), duration))
-        }
-        if (fname == 'reviewscore' && !is.na(data$get('reviewscore'))) {  # data['reviewscore'] = '99/00 [Q1234]'
-          rsl <- character()
-          for (rs in strsplit(data$get('reviewscore'), '|', fixed = T)[[1]]) {
-            if (grepl('Q\\d+', rs)) {
-              rsq <- regmatches(rs, regexec('Q\\d+', rs))[[1]]
-              rsl <- append(rsl, sub('Q\\d+', labelsdict$get(rsq), rs))
-            }
+    if(!is.null(labels)){
+      # create a dict of labels for fast allocating
+      labelsdict <- collections::dict(items=labels$label, keys=rownames(labels))
+      # Add labels to entities
+      for (qid in names(d)) {
+        data <- d[[qid]]
+        for (fname in data$keys()) {
+          if (is.na(data$get(fname)))
+            next
+          if (endsWith(fname,'Q') && !(fname %in% c('bplaceQ', 'dplaceQ', 'bcountryQ', 'dcountryQ'))) {
+            # Get the correct field (without "Q")
+            fnn <- sub("^(.+)Q$","\\1", fname)
+            # Replace all occurrences of Qxxx in those fields
+            qx <- strsplit(data$get(fnn), '|', fixed = T)[[1]]
+            labelsx <- lapply(qx, function(x) {labelsdict$get(x)})
+            d[[qid]]$set(fnn, paste0(labelsx, collapse='|'))
           }
-          data$set('reviewscore', paste0(rsl, collapse = '|'))
+          if (fname == 'duration' && !is.na(data$get('duration'))) {     # data['duration'] = '+125 (Q7727)'
+            duration <- data$get('duration')
+            if (grepl('Q\\d+', duration))
+              durationq <- regmatches(duration, regexec('Q\\d+', duration))[[1]]
+            data$set('duration', sub(': Q\\d+', labelsdict$get(durationq), duration))
+          }
+          if (fname == 'reviewscore' && !is.na(data$get('reviewscore'))) {  # data['reviewscore'] = '99/00 [Q1234]'
+            rsl <- character()
+            for (rs in strsplit(data$get('reviewscore'), '|', fixed = T)[[1]]) {
+              if (grepl('Q\\d+', rs)) {
+                rsq <- regmatches(rs, regexec('Q\\d+', rs))[[1]]
+                rsl <- append(rsl, sub('Q\\d+', labelsdict$get(rsq), rs))
+              }
+            }
+            data$set('reviewscore', paste0(rsl, collapse = '|'))
+          }
         }
       }
     }
@@ -2877,7 +2879,7 @@ m_XtoolsInfoAll <- function(article, project="en.wikipedia.org",
 
 
 # VIAF API ----
-# https://www.oclc.org/developer/api/oclc-apis/viaf/authority-cluster.en.html
+# https://developer.api.oclc.org/viaf-api#/Authority%20Cluster
 # --------------------------------------------------------------------------.
 
 #' Suggests VIAF id from a name
@@ -2893,7 +2895,7 @@ m_XtoolsInfoAll <- function(article, project="en.wikipedia.org",
 #'   author: last name, first name\[,\] \[(\[year_of_bird\]\[-year_of_death\])\]
 #' @return A data-frame with four columns from the elements "term", "score",
 #' "nametype" and "viafid" of the Autosuggest API response.
-#' @seealso https://www.oclc.org/developer/api/oclc-apis/viaf/authority-cluster.en.html
+#' @seealso https://developer.api.oclc.org/viaf-api#/Authority%20Cluster
 #' @examples
 #' v_AutoSuggest('Iranzo')
 #' v_AutoSuggest('Esparza, María')
@@ -2935,7 +2937,7 @@ v_AutoSuggest <- function(author) {
 #' of records found is greater than 250 (API restrictions), successive requests
 #' are made.
 #' @param CQL_Query String with the search or a name if mode is specified.
-#' See https://www.oclc.org/developer/api/oclc-apis/viaf/authority-cluster.en.html
+#' See https://developer.api.oclc.org/viaf-api#/Authority%20Cluster
 #' @param mode apply a predefined query:
 #' 'anyField' -> 'cql.any = "string"'
 #' Search preferred Name - names which are the preferred form in an authority
@@ -3059,7 +3061,7 @@ v_Search <- function(CQL_Query, mode=c('default', 'anyField', 'allmainHeadingEl'
 #' record as is.
 #' @param viafid The VIAF identifier.
 #' @param record_format 'viaf.json' (default) or others in
-#' https://www.oclc.org/developer/api/oclc-apis/viaf/authority-cluster.en.html.
+#' https://developer.api.oclc.org/viaf-api#/Authority%20Cluster
 #' @return The VIAF record cluster in the format indicated in record_format.
 #' @export
 v_GetRecord <- function(viafid, record_format='viaf.json') {

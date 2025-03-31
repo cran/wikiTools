@@ -1,7 +1,7 @@
 Package: wikiTools
 Type: Package
-Version: 1.2.7
-Date: 2024-07-25
+Version: 1.2.8
+Date: 2025-03-28
 Title: Tools for Wikidata and Wikipedia
 Description: A set of wrappers intended to check, read and download information from the Wikimedia sources. It is specifically created to work with names of celebrities, in which case their information and statistics can be downloaded. Additionally, it also builds links and snippets to use in combination with the function gallery() in netCoin package.
 License: GPL-3
@@ -19,8 +19,8 @@ Authors@R: c(
     person("Cristina", "Calvo", email = "cristinacalvolopez@usal.es", role = "aut")
     )
 Maintainer: Modesto Escobar <modesto@usal.es>
-RoxygenNote: 7.3.1
-Packaged: 2024-07-26 14:41:03 UTC; Modesto
+RoxygenNote: 7.3.2
+Packaged: 2025-03-31 15:36:24 UTC; Modesto
 Author: Modesto Escobar [aut, cph, cre]
     (<https://orcid.org/0000-0003-2072-6071>),
   Ángel Zazo [aut],
@@ -28,4 +28,4 @@ Author: Modesto Escobar [aut, cph, cre]
   David Barrios [aut],
   Cristina Calvo [aut]
 Repository: CRAN
-Date/Publication: 2024-07-27 22:20:02 UTC
+Date/Publication: 2025-03-31 16:10:02 UTC
