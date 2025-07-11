@@ -12,7 +12,7 @@
 
 <meta name="author" content="Angel Zazo, Department of Computer Science and Automatics, University of Salamanca" />
 
-<meta name="date" content="2025-03-31" />
+<meta name="date" content="2025-07-11" />
 
 <title>Examples with wiki_utils</title>
 
@@ -341,7 +341,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Examples with wiki_utils</h1>
 <h4 class="author">Angel Zazo, Department of Computer Science and
 Automatics, University of Salamanca</h4>
-<h4 class="date">2025-03-31</h4>
+<h4 class="date">2025-07-11</h4>
 
 
 
@@ -498,7 +498,7 @@ Wikipedia pages</p>
 <p>Note: depending on connection speed, nlimit parameter musts be
 adjusted</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&quot;Q2306091&quot;</span>, <span class="at">mode=</span><span class="st">&#39;count&#39;</span>) <span class="co"># &quot;Q2306091&quot; Qoc for Sociologist</span></span></code></pre></div>
-<pre><code>## [1] 20846</code></pre>
+<pre><code>## [1] 21190</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&quot;Q2306091&quot;</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>l <span class="ot">&lt;-</span> q<span class="sc">$</span>entity</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>lw <span class="ot">&lt;-</span> <span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&#39;Q2306091&#39;</span>, <span class="at">mode=</span><span class="st">&#39;wikipedias&#39;</span>) <span class="co"># lw=dataframe</span></span>
@@ -522,8 +522,8 @@ but they are currently deleted.</p>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co"># Not valid</span></span>
 <span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>v[<span class="sc">!</span>v<span class="sc">$</span>valid,]</span></code></pre></div>
 <pre><code>##                entity valid instanceof redirection
-## Q105660123 Q105660123 FALSE              Q97352588
-## Q115637688 Q115637688 FALSE</code></pre>
+## Q115637688 Q115637688 FALSE                       
+## Q105660123 Q105660123 FALSE              Q97352588</code></pre>
 </div>
 <div id="w_property" class="section level4">
 <h4>w_Property</h4>
@@ -545,25 +545,25 @@ Centro de Arte Reina Sofía)</p>
 <span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>mncars[<span class="sc">!</span>(mncars<span class="sc">$</span>entity <span class="sc">%in%</span> mncarsQ5<span class="sc">$</span>entity),]  <span class="co"># not instance of Q5.</span></span></code></pre></div>
 <pre><code>##                entity                                  entityLabel
 ## Q27657364   Q27657364 Midnight Gardening (Jardinería a medianoche)
-## Q105687869 Q105687869            João Maria Gusmão and Pedro Paiva
-## Q4517304     Q4517304                                  Chto Delat?
-## Q20102460   Q20102460                        Agustín Parejo School
 ## Q5849776     Q5849776                                 Estrujenbank
 ## Q317874       Q317874                                     Ant Farm
+## Q4517304     Q4517304                                  Chto Delat?
+## Q105687869 Q105687869            João Maria Gusmão and Pedro Paiva
+## Q20102460   Q20102460                        Agustín Parejo School
 ##                                   entityDescription        instanceof
 ## Q27657364                 cuadro de Jerónimo Elespe          Q3305213
-## Q105687869                  Portuguese artistic duo         Q85942930
-## Q4517304                     Russian art collective          Q1400264
-## Q20102460                                                    Q1400264
 ## Q5849776                        colectivo artístico          Q1400264
 ## Q317874    American art and architecture collective Q1400264|Q4387609
+## Q4517304                     Russian art collective          Q1400264
+## Q105687869                  Portuguese artistic duo         Q85942930
+## Q20102460                                                    Q1400264
 ##                                          instanceofLabel                 P4439
 ## Q27657364                                        pintura       elespe-jeronimo
-## Q105687869                                 duo artístico     gusmao-joao-maria
-## Q4517304                           colectivo de artistas            chto-delat
-## Q20102460                          colectivo de artistas agustin-parejo-school
 ## Q5849776                           colectivo de artistas          estrujenbank
-## Q317874    colectivo de artistas|estudio de arquitectura              ant-farm</code></pre>
+## Q317874    colectivo de artistas|estudio de arquitectura              ant-farm
+## Q4517304                           colectivo de artistas            chto-delat
+## Q105687869                                 duo artístico     gusmao-joao-maria
+## Q20102460                          colectivo de artistas agustin-parejo-school</code></pre>
 </div>
 <div id="w_entityinfo" class="section level4">
 <h4>w_EntityInfo</h4>
