@@ -1607,13 +1607,21 @@ w_EntityInfo <- function(entity_list, mode='default', langsorder='',
   else {
     # For these claims, more than one occurrences separated with '|' are token, except
     # for fields in fieldsonlyone, in which only the most referenced is taken
-    fields <- c('P31', 'P18', 'P21', 'P69', 'P106', 'P101', 'P135', 'P136',
-                'P737', 'P800', 'P463', 'P166', 'P213', 'P214', 'P245', 'P950', 'P5321', 'P4439', 'P13371', 'P244',
+    fields <- c('P31', 'P18', 'P21', 'P69', 'P106', 
+                'P101', 'P135', 'P136', 'P737', 'P800', 
+                'P463', 'P166', 'P213', 'P214', 'P245', 'P648', 
+                'P950', 'P2799', 'P4439', 'P5321', 'P13371', 'P244', 'P269',
+                'P227', 'P1005',
+                'P1711', 'P1417', 'P12582', 'P10832', 'P1882', 'P6002',
                 'P19', 'P20', 'P569', 'P570')
     names(fields) <- c('instanceof', 'pic', 'sex', 'educatedat', 'occupation',
                        'fieldofwork', 'movement', 'genre', 'influencedby', 'notablework',
-                       'memberof', 'award', 'isnid', 'viafid', 'ulanid', 'bneid', 'mnpid', 'mncarsid', 'histhispid', 'locid',
+                       'memberof', 'award', 'isnid', 'viafid', 'ulanid', 'openlid', 
+                       'bneid', 'bvmcid', 'mncarsid', 'mnpid', 'histhispid', 'locid', 'sudocid',
+                       'dnbid', 'ptbnpid',
+                       'bmid', 'britannid', 'oxfid', 'worldcatid', 'webgallid', 'wikiartid',
                        'bplace', 'dplace', 'bdate', 'ddate')
+    
     # For this claims, only the most referred is taken (note, however that the
     # preferred has priority).
     fieldsonlyone <- c('P19', 'P20', 'P569', 'P570')
@@ -1625,7 +1633,11 @@ w_EntityInfo <- function(entity_list, mode='default', langsorder='',
                  'occupationQ', 'occupation', 'notableworkQ', 'notablework', 'educatedatQ', 'educatedat',
                  'fieldofworkQ', 'fieldofwork', 'movementQ', 'movement', 'genreQ', 'genre',
                  'influencedbyQ', 'influencedby', 'memberofQ', 'memberof', 'awardQ', 'award',
-                 'isnid', 'viafid', 'ulanid', 'bneid', 'mnpid', 'mncarsid', 'histhispid', 'locid', 'pic', 'wikipedias')
+                 'isnid', 'viafid', 'ulanid', 'openlid', 
+                 'bneid', 'bvmcid', 'mncarsid', 'mnpid', 'histhispid', 'locid', 'sudocid',
+                 'dnbid', 'ptbnpid',
+                 'bmid', 'britannid', 'oxfid', 'worldcatid', 'webgallid', 'wikiartid', 
+                 'pic', 'wikipedias')
   }
   #
   llangs <- strsplit(langsorder, '|', fixed = T)[[1]]
@@ -2851,8 +2863,12 @@ m_XtoolsInfoDefault <- function(article, infotype=c("articleinfo", "prose", "lin
       cat(paste0("  INFO: Adding the number of links_in_count of the '", arts[i],"' page.\n"), file=stderr())
       b <- m_XtoolsInfo(arts[i], infotype="links", project=project,
                         redirects=FALSE)
-      d["links_in_count"] <- d["links_in_count"][[1]] + b["links_in_count"][[1]]
-      d["elapsed_time"] <- d["elapsed_time"][[1]] + b["elapsed_time"][[1]]
+      if(length(b) && length(b["links_in_count"]) && length(b["elapsed_time"])){
+        d["links_in_count"] <- d["links_in_count"][[1]] + b["links_in_count"][[1]]
+        d["elapsed_time"] <- d["elapsed_time"][[1]] + b["elapsed_time"][[1]]
+      }else{
+        cat(paste0("  INFO: Problems adding the number of links_in_count of the '", arts[i],"' page.\n"), file=stderr())
+      }
     }
   }
   if (redirects)

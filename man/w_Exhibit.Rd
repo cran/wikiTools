@@ -10,6 +10,7 @@ w_Exhibit(
   langsorder = "en",
   wikilangs = langsorder,
   links = c("wikidata", "wiki", "BNE", "RAH", "ISNI"),
+  map = c("none", "first", "last", "only"),
   info = FALSE,
   imgpath = NULL,
   nlimit = MW_LIMIT,
@@ -36,7 +37,11 @@ using "|" as separator. Wikipedias pages are returned in same order as
 languages in this parameter. If wikilangs='' the function returns Wikipedia
 pages in any language, not sorted.}
 
-\item{links}{Vector of IDs for linking to its catalog. V.gr. c("Wikidata", "Wikipedia", "BNE", "RAH)}
+\item{links}{Vector of IDs for linking to its catalog. V.gr. c("Wikidata", "Wikipedia", "BNE", "RAH").
+These four are those by default. Others possibles are c("BVMC", "VIAF", "LOC","ISNI", "ULAN", "OPENL",
+"MNCARS", "MNP", "SUDOC", "BRITISH", "BRITANNICA", "OXFORD", "WORLDCAT", "WEBCAT", "WEBGALL", "WIKIART")}
+
+\item{map}{A map should be created? This parameter can be "none", "only", "first" or "last".}
 
 \item{info}{Add the first paragraph of Wikipedia in the template.}
 
@@ -48,7 +53,7 @@ reduce the default value if error is raised.}
 
 \item{debug}{For debugging (info or query).}
 
-\item{...}{Same arguments as in netCoin::exhibit().}
+\item{...}{Arguments for netCoin::exhibit(), evolMap::create_map() and evolMap::add_markers().}
 }
 \value{
 An object of gallery_rd3 class.

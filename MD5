@@ -1,13 +1,13 @@
-1d693855cb6f10df7f7aa1032f83e113 *DESCRIPTION
+273ca64ae210f2422f83bb7d94725a89 *DESCRIPTION
 d50f5052157cb46b0a76884617389ba0 *NAMESPACE
-2004ee7c1a04f5a0166c9a4247fed991 *R/w_Exhibit.R
+401daf0bc6a55a240f42b5ea5bc56cb7 *R/w_Exhibit.R
 6a4015e820c8e2cc70a15b8b15302447 *R/wikiTools.R
-47976bbd70ea7e66fd89e287393dd6c7 *R/wiki_utils.R
+e70644f6e8449bde04675e9bdda7084e *R/wiki_utils.R
 c1b3bb050b0cfcd4b47d61edf147cfe5 *README.md
-1ad513ad2caa18d1cb69e8bb61813e37 *build/vignette.rds
+0e0e2499987a3a86a5c523d287633532 *build/vignette.rds
 33dea24dcacca97fd60becadb8d9b28e *inst/doc/wiki_utils.R
 816b8a4aff0599609ccce36de0ab035b *inst/doc/wiki_utils.Rmd
-5deef86cb8040acd25f415a5944be688 *inst/doc/wiki_utils.html
+74fdd8b8d0f52848399bd5c0ba5b2768 *inst/doc/wiki_utils.html
 e85418277f7a7fbd2741d8bb3388f241 *man/cc.Rd
 ef690b01776ae0d6bc1bc2dacbfe2a33 *man/checkEntities.Rd
 42134cef1ea46a66bd1bb128d2a96651 *man/checkTitles.Rd
@@ -28,7 +28,7 @@ fc64fc6aa76c5b6c8f5fb1d31d8e80bb *man/nametoWikiFrame.Rd
 75762706a42dce3c0198e46dc7053e20 *man/nametoWikiHtml.Rd
 e5e44e3757d42910718b44edcb83b1e3 *man/nametoWikiURL.Rd
 e9f02342bfa76b7eff77196a5c38387d *man/normalizedTitle.Rd
-7d167d8939fb6caca881e6a7328e1d43 *man/pop_up.Rd
+9fd1a3d55cfc0601ff29365cd5bf2439 *man/pop_up.Rd
 f234ffc3f803a924720d6639e2f4042e *man/preName.Rd
 ac0c445230c2cce7f12b612ee28bc419 *man/reqMediaWiki.Rd
 c16feef6600b0849e3750bacd6df5fce *man/reqWDQS.Rd
@@ -43,7 +43,7 @@ c102f2dd29b20c5cc3a4aaff44ee0ae5 *man/v_Extract.Rd
 e1846f5b0faa4b39973dad26e3009fbd *man/v_Search.Rd
 806f631f38a81f2b2ef30389f28530f6 *man/validUrl.Rd
 1de2446a652ec390d0ffcbd4588f3f08 *man/w_EntityInfo.Rd
-9774382ed656ee2b1953aeeff05b2068 *man/w_Exhibit.Rd
+dc26c704fac28c693e8ec120278ac251 *man/w_Exhibit.Rd
 513aaaaec20a8e4d427bf824b8854214 *man/w_Geoloc.Rd
 7650570b102e282b2e5dd9ffad1f6a68 *man/w_LabelDesc.Rd
 ff28c2192e704d331f30180b165d4d36 *man/w_Property.Rd
