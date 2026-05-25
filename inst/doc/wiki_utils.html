@@ -10,11 +10,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="Angel Zazo, Department of Computer Science and Automatics, University of Salamanca" />
+<meta name="author" content="Angel Zazo, Department of Computer Science and Automatics, University of Salamanca Modesto Escobar, Department of Sociology and Communication, University of Salamanca" />
 
-<meta name="date" content="2026-03-14" />
+<meta name="date" content="2026-05-25" />
 
-<title>Examples with wiki_utils</title>
+<title>wikiTools package</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -339,10 +339,11 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">Examples with wiki_utils</h1>
+<h1 class="title toc-ignore">wikiTools package</h1>
 <h4 class="author">Angel Zazo, Department of Computer Science and
-Automatics, University of Salamanca</h4>
-<h4 class="date">2026-03-14</h4>
+Automatics, University of Salamanca Modesto Escobar, Department of
+Sociology and Communication, University of Salamanca</h4>
+<h4 class="date">2026-05-25</h4>
 
 
 
@@ -350,57 +351,59 @@ Automatics, University of Salamanca</h4>
 <h2>Functions</h2>
 <div id="functions-to-obtain-a-list-of-wikidata-entities" class="section level3">
 <h3>Functions to obtain a list of Wikidata entities</h3>
-<p>w_SearchByLabel(string, mode=‘inlabel’, langs=““, langsorder=’’,
-instanceof=”“, Pproperty=”“, debug=FALSE)</p>
-<p>w_SearchByOccupation(Qoc, mode=c(‘default’,‘count’,‘wikipedias’),
-langsorder=’‘, wikilangs=’’, nlimit=10000, debug=FALSE)</p>
+<p><strong>w_SearchByLabel</strong>(string, mode=‘inlabel’, langs=““,
+langsorder=’’, instanceof=”“, Pproperty=”“, debug=FALSE)</p>
+<p><strong>w_SearchByOccupation</strong>(Qoc,
+mode=c(‘default’,‘count’,‘wikipedias’), langsorder=’‘, wikilangs=’’,
+nlimit=10000, debug=FALSE)</p>
 </div>
 <div id="function-to-obtain-information-from-a-list-of-wikidata-entities-or-a-single-one." class="section level3">
 <h3>Function to obtain information from a list of Wikidata entities or a
 single one.</h3>
-<p>w_isInstanceOf(entity_list, instanceof=’’, nlimit=50000,
+<p><strong>w_isInstanceOf</strong>(entity_list, instanceof=’’,
+nlimit=50000, debug=FALSE)</p>
+<p><strong>w_Wikipedias</strong>(entity_list, wikilangs=““,
+instanceof=’’, nlimit=1500, debug=FALSE)</p>
+<p><strong>w_isValid</strong>(entity_list, nlimit=50000,
 debug=FALSE)</p>
-<p>w_Wikipedias(entity_list, wikilangs=““, instanceof=’’, nlimit=1500,
-debug=FALSE)</p>
-<p>w_isValid(entity_list, nlimit=50000, debug=FALSE)</p>
-<p>w_Property(entity_list, Pproperty, includeQ=FALSE, langsorder=‘en’,
-nlimit=10000, debug=FALSE)</p>
-<p>w_SearchByAuthority(Pauthority, langsorder=’‘, instanceof=’’,
-nlimit=10000, debug=FALSE)</p>
+<p><strong>w_Property</strong>(entity_list, Pproperty, includeQ=FALSE,
+langsorder=‘en’, nlimit=10000, debug=FALSE)</p>
+<p><strong>w_SearchByAuthority</strong>(Pauthority, langsorder=’‘,
+instanceof=’’, nlimit=10000, debug=FALSE)</p>
 <p>Pauthority = Authority Database Property in Wikidata</p>
-<p>w_EntityInfo(entity_list, mode=‘default’, langsorder=’’,
-wikilangs=““, nlimit=MW_LIMIT, debug=FALSE)</p>
+<p><strong>w_EntityInfo</strong>(entity_list, mode=‘default’,
+langsorder=’’, wikilangs=““, nlimit=MW_LIMIT, debug=FALSE)</p>
 </div>
 <div id="functions-to-obtain-information-using-the-wikimedia-apis" class="section level3">
 <h3>Functions to obtain information using the WikiMedia API’s</h3>
-<p>m_Opensearch(string, project=‘en.wikipedia.org’,
+<p><strong>m_Opensearch</strong>(string, project=‘en.wikipedia.org’,
 profile=“engine_autoselect”, redirects=“resolve”)</p>
-<p>m_reqMediaWiki(titles,
+<p><strong>m_reqMediaWiki</strong>(titles,
 mode=c(‘wikidataEntity’,‘redirects’,‘pagePrimaryImage’,‘pageFiles’),
 project=‘en.wikipedia.org’, redirects=TRUE,
 exclude_ext=‘svg|webp|xcf’)</p>
-<p>m_Pageviews(article, start, end, project=“en.wikipedia.org”,
-access=“all-access”, agent=“user”, granularity=“monthly”,
-redirects=FALSE)</p>
-<p>m_XtoolsInfo(article, infotype=c(“articleinfo”, “prose”, “links”),
-project=“en.wikipedia.org”, redirects=FALSE)</p>
+<p><strong>m_Pageviews</strong>(article, start, end,
+project=“en.wikipedia.org”, access=“all-access”, agent=“user”,
+granularity=“monthly”, redirects=FALSE)</p>
+<p><strong>m_XtoolsInfo</strong>(article, infotype=c(“articleinfo”,
+“prose”, “links”), project=“en.wikipedia.org”, redirects=FALSE)</p>
 </div>
 <div id="functions-to-obtain-information-viafid-or-cluster-records-using-the-viaf-api" class="section level3">
 <h3>Functions to obtain information (viafID or cluster records) using
 the VIAF API</h3>
-<p>v_AutoSuggest(author) : obtains viafID</p>
-<p>v_Search(CQL_Query, mode=c(‘default’, ‘anyField’, ‘allmainHeadingEl’,
-‘allNames’, ‘allPersonalNames’, ‘allTitle’), schema=c(‘brief’, ‘JSON’))
-: obtains clusters records</p>
+<p><strong>v_AutoSuggest</strong>(author) : obtains viafID</p>
+<p><strong>v_Search</strong>(CQL_Query, mode=c(‘default’, ‘anyField’,
+‘allmainHeadingEl’, ‘allNames’, ‘allPersonalNames’, ‘allTitle’),
+schema=c(‘brief’, ‘JSON’)) : obtains clusters records</p>
 </div>
 <div id="function-to-retrieve-a-cluster-record-using-the-viafid." class="section level3">
 <h3>Function to retrieve a cluster record using the viafID.</h3>
-<p>v_GetRecord(viafid, record_format=‘viaf.json’): retrieve a cluster
-record</p>
+<p><strong>v_GetRecord</strong>(viafid, record_format=‘viaf.json’):
+retrieve a cluster record</p>
 </div>
 <div id="function-to-extract-information-from-a-viaf-cluster-record" class="section level3">
 <h3>Function to extract information from a VIAF cluster record</h3>
-<p>v_Extract(viaf, info, source=NULL)</p>
+<p><strong>v_Extract</strong>(viaf, info, source=NULL)</p>
 </div>
 </div>
 <div id="package-installation-and-loading" class="section level2">
@@ -456,43 +459,29 @@ in the language indicated.</p>
 <h4>aux: getting a vector of entities (<code>l</code>) to use
 later.</h4>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_SearchByLabel</span>(<span class="at">string=</span><span class="st">&#39;Iranzo&#39;</span>, <span class="at">langsorder=</span><span class="st">&#39;es|en&#39;</span>, <span class="at">mode=</span><span class="st">&#39;inlabel&#39;</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>l <span class="ot">&lt;-</span> df<span class="sc">$</span>entity</span></code></pre></div>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(df)){</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  l <span class="ot">&lt;-</span> df<span class="sc">$</span>entity</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="w_isinstanceof" class="section level4">
 <h4>w_isInstanceOf</h4>
 <p>Check if elements in entity_list are instance of a Wikimedia
 class</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_isInstanceOf</span>(<span class="at">entity_list=</span>l, <span class="at">instanceof=</span><span class="st">&#39;Q5&#39;</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co"># Not TRUE</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>df[<span class="sc">!</span>df<span class="sc">$</span>instanceof_Q5,]</span></code></pre></div>
-<pre><code>##                entity       instanceof instanceof_Q5
-## Q6058550     Q6058550   Q16560|Q133215         FALSE
-## Q11912738   Q11912738            Q3947         FALSE
-## Q31835108   Q31835108        Q24529780         FALSE
-## Q45976259   Q45976259          Q101352         FALSE
-## Q45987474   Q45987474         Q4167410         FALSE
-## Q47034606   Q47034606         Q1642895         FALSE
-## Q67289998   Q67289998           Q38720         FALSE
-## Q83296470   Q83296470                          FALSE
-## Q85684513   Q85684513 Q28564|Q12317349         FALSE
-## Q97101007   Q97101007          Q245117         FALSE
-## Q97101009   Q97101009          Q245117         FALSE
-## Q111015546 Q111015546             Q571         FALSE
-## Q117783790 Q117783790          Q811430         FALSE
-## Q125544306 Q125544306        Q47461344         FALSE
-## Q125544313 Q125544313         Q3331189         FALSE
-## Q131370779 Q131370779           Q79007         FALSE
-## Q137732706 Q137732706         Q3393298         FALSE
-## Q137774274 Q137774274         Q3393298         FALSE</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_isInstanceOf</span>(<span class="at">entity_list=</span>l, <span class="at">instanceof=</span><span class="st">&#39;Q5&#39;</span>)</span></code></pre></div>
+<pre><code>## No internet connection or data source broken.</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Not TRUE</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(df)){</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  df[<span class="sc">!</span>df<span class="sc">$</span>instanceof_Q5,]</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="w_wikipedias" class="section level4">
 <h4>w_Wikipedias</h4>
 <p>Search for Wikipedia pages in all/some languages</p>
 <p>Optional: instanceOF (limit to entities which are instance of a
 Wikidata class)</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_Wikipedias</span>(<span class="at">entity_list=</span>l)</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_Wikipedias</span>(<span class="at">entity_list=</span>l, <span class="at">wikilangs=</span><span class="st">&#39;es|en|fr&#39;</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_Wikipedias</span>(<span class="at">entity_list=</span>l, <span class="at">wikilangs=</span><span class="st">&#39;es|en|fr&#39;</span>, <span class="at">instanceof=</span><span class="st">&quot;Q5&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_Wikipedias</span>(<span class="at">entity_list=</span>l)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_Wikipedias</span>(<span class="at">entity_list=</span>l, <span class="at">wikilangs=</span><span class="st">&#39;es|en|fr&#39;</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_Wikipedias</span>(<span class="at">entity_list=</span>l, <span class="at">wikilangs=</span><span class="st">&#39;es|en|fr&#39;</span>, <span class="at">instanceof=</span><span class="st">&quot;Q5&quot;</span>)</span></code></pre></div>
 </div>
 <div id="w_searchbyoccupation" class="section level4">
 <h4>w_SearchByOccupation</h4>
@@ -500,18 +489,16 @@ Wikidata class)</p>
 Wikipedia pages</p>
 <p>Note: depending on connection speed, nlimit parameter musts be
 adjusted</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&quot;Q2306091&quot;</span>, <span class="at">mode=</span><span class="st">&#39;count&#39;</span>) <span class="co"># &quot;Q2306091&quot; Qoc for Sociologist</span></span></code></pre></div>
-<pre><code>## [1] 22215</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&quot;Q2306091&quot;</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>l <span class="ot">&lt;-</span> q<span class="sc">$</span>entity</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>lw <span class="ot">&lt;-</span> <span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&#39;Q2306091&#39;</span>, <span class="at">mode=</span><span class="st">&#39;wikipedias&#39;</span>) <span class="co"># lw=dataframe</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co"># We can obtain the same information using previous function w_Wikipedias:</span></span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>lw2 <span class="ot">&lt;-</span> <span class="fu">w_Wikipedias</span>(<span class="at">entity_list=</span>l)</span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co"># Verifying:</span></span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="fu">all</span>(lw[<span class="st">&#39;Q10320558&#39;</span>,<span class="st">&#39;pages&#39;</span>] <span class="sc">==</span> lw2[<span class="st">&#39;Q10320558&#39;</span>,<span class="st">&#39;pages&#39;</span>])</span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co"># Verifying:</span></span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">sort</span>(<span class="fu">strsplit</span>(lw[<span class="st">&#39;Q9061&#39;</span>, <span class="st">&#39;pages&#39;</span>], <span class="st">&#39;|&#39;</span>, <span class="at">fixed =</span> T)[[<span class="dv">1</span>]]) <span class="sc">==</span></span>
-<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>    <span class="fu">sort</span>(<span class="fu">strsplit</span>(lw2[<span class="st">&#39;Q9061&#39;</span>, <span class="st">&#39;pages&#39;</span>], <span class="st">&#39;|&#39;</span>, <span class="at">fixed =</span> T)[[<span class="dv">1</span>]]))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&quot;Q2306091&quot;</span>, <span class="at">mode=</span><span class="st">&#39;count&#39;</span>) <span class="co"># &quot;Q2306091&quot; Qoc for Sociologist</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&quot;Q2306091&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>lw <span class="ot">&lt;-</span> <span class="fu">w_SearchByOccupation</span>(<span class="at">Qoc=</span><span class="st">&#39;Q2306091&#39;</span>, <span class="at">mode=</span><span class="st">&#39;wikipedias&#39;</span>) <span class="co"># lw=dataframe</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co"># We can obtain the same information using previous function w_Wikipedias:</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>lw2 <span class="ot">&lt;-</span> <span class="fu">w_Wikipedias</span>(<span class="at">entity_list=</span>l)</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co"># Verifying:</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="fu">all</span>(lw[<span class="st">&#39;Q10320558&#39;</span>,<span class="st">&#39;pages&#39;</span>] <span class="sc">==</span> lw2[<span class="st">&#39;Q10320558&#39;</span>,<span class="st">&#39;pages&#39;</span>])</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co"># Verifying:</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">sort</span>(<span class="fu">strsplit</span>(lw[<span class="st">&#39;Q9061&#39;</span>, <span class="st">&#39;pages&#39;</span>], <span class="st">&#39;|&#39;</span>, <span class="at">fixed =</span> T)[[<span class="dv">1</span>]]) <span class="sc">==</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>    <span class="fu">sort</span>(<span class="fu">strsplit</span>(lw2[<span class="st">&#39;Q9061&#39;</span>, <span class="st">&#39;pages&#39;</span>], <span class="st">&#39;|&#39;</span>, <span class="at">fixed =</span> T)[[<span class="dv">1</span>]]))</span></code></pre></div>
 </div>
 <div id="w_isvalid." class="section level4">
 <h4>w_isValid.</h4>
@@ -520,18 +507,21 @@ a label or has a description. If one entity exists but is not valid, is
 possible that it has a redirection to other entity, in that case, the
 redirection is obtained. Other entities may have existed in the past,
 but they are currently deleted.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>l2 <span class="ot">&lt;-</span> <span class="fu">append</span>(l, <span class="fu">c</span>(<span class="st">&quot;Q115637688&quot;</span>, <span class="st">&quot;Q105660123&quot;</span>))  <span class="co"># Note: adding two new entities</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">w_isValid</span>(l2)</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co"># Not valid</span></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>v[<span class="sc">!</span>v<span class="sc">$</span>valid,]</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>l2 <span class="ot">&lt;-</span> <span class="fu">append</span>(l, <span class="fu">c</span>(<span class="st">&quot;Q115637688&quot;</span>, <span class="st">&quot;Q105660123&quot;</span>))  <span class="co"># Note: adding two new entities</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">w_isValid</span>(l2)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(v)){</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="co"># Not valid</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  v[<span class="sc">!</span>v<span class="sc">$</span>valid,]</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>##                entity valid instanceof redirection
-## Q115637688 Q115637688 FALSE                       
-## Q105660123 Q105660123 FALSE              Q97352588</code></pre>
+## Q139797875 Q139797875 FALSE                       
+## Q105660123 Q105660123 FALSE              Q97352588
+## Q115637688 Q115637688 FALSE</code></pre>
 </div>
 <div id="w_property" class="section level4">
 <h4>w_Property</h4>
 <p>Obtain properties of entity_list.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">w_Property</span>(l, <span class="at">Pproperty =</span> <span class="st">&#39;P21|P569|P214&#39;</span>, <span class="at">langsorder =</span> <span class="st">&#39;es|en&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">w_Property</span>(l, <span class="at">Pproperty =</span> <span class="st">&#39;P21|P569|P214&#39;</span>, <span class="at">langsorder =</span> <span class="st">&#39;es|en&#39;</span>)</span></code></pre></div>
 </div>
 <div id="w_searchbyauthority" class="section level4">
 <h4>w_SearchByAuthority</h4>
@@ -540,46 +530,32 @@ authority property “Pauthority”.</p>
 <p>Optional: instanceOf</p>
 <p>Example: Pauthority=P4439 (has identifier in the Museo Nacional
 Centro de Arte Reina Sofía)</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>mncars   <span class="ot">&lt;-</span> <span class="fu">w_SearchByAuthority</span>(<span class="at">Pauthority=</span><span class="st">&quot;P4439&quot;</span>, <span class="at">langsorder =</span> <span class="st">&#39;es|en&#39;</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="co"># 1286  [human, groups, etc.]</span></span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>mncarsQ5 <span class="ot">&lt;-</span> <span class="fu">w_SearchByAuthority</span>(<span class="at">Pauthority=</span><span class="st">&quot;P4439&quot;</span>, <span class="at">langsorder =</span> <span class="st">&#39;es|en&#39;</span>,</span>
-<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>                                     <span class="at">instanceof =</span> <span class="st">&#39;Q5&#39;</span>)  <span class="co"># 1280</span></span>
-<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="co"># Entities are not &#39;human&#39; (Q5) [see entityDescription column):</span></span>
-<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>mncars[<span class="sc">!</span>(mncars<span class="sc">$</span>entity <span class="sc">%in%</span> mncarsQ5<span class="sc">$</span>entity),]  <span class="co"># not instance of Q5.</span></span></code></pre></div>
-<pre><code>##                entity                                  entityLabel
-## Q5849776     Q5849776                                 Estrujenbank
-## Q20102460   Q20102460                        Agustín Parejo School
-## Q27657364   Q27657364 Midnight Gardening (Jardinería a medianoche)
-## Q317874       Q317874                                     Ant Farm
-## Q105687869 Q105687869            João Maria Gusmão and Pedro Paiva
-## Q4517304     Q4517304                                  Chto Delat?
-##                                   entityDescription        instanceof
-## Q5849776                        colectivo artístico          Q1400264
-## Q20102460                                                    Q1400264
-## Q27657364                 cuadro de Jerónimo Elespe          Q3305213
-## Q317874    American art and architecture collective Q1400264|Q4387609
-## Q105687869                  Portuguese artistic duo         Q85942930
-## Q4517304                     Russian art collective          Q1400264
-##                                          instanceofLabel                 P4439
-## Q5849776                           colectivo de artistas          estrujenbank
-## Q20102460                          colectivo de artistas agustin-parejo-school
-## Q27657364                                        pintura       elespe-jeronimo
-## Q317874    colectivo de artistas|estudio de arquitectura              ant-farm
-## Q105687869                                 duo artístico     gusmao-joao-maria
-## Q4517304                           colectivo de artistas            chto-delat</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>mncars   <span class="ot">&lt;-</span> <span class="fu">w_SearchByAuthority</span>(<span class="at">Pauthority=</span><span class="st">&quot;P4439&quot;</span>, <span class="at">langsorder =</span> <span class="st">&#39;es|en&#39;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co"># 1286  [human, groups, etc.]</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>mncarsQ5 <span class="ot">&lt;-</span> <span class="fu">w_SearchByAuthority</span>(<span class="at">Pauthority=</span><span class="st">&quot;P4439&quot;</span>, <span class="at">langsorder =</span> <span class="st">&#39;es|en&#39;</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>                                     <span class="at">instanceof =</span> <span class="st">&#39;Q5&#39;</span>)  <span class="co"># 1280</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="co"># Entities are not &#39;human&#39; (Q5) [see entityDescription column):</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>mncars   <span class="ot">&lt;-</span> <span class="fu">w_SearchByAuthority</span>(<span class="at">Pauthority=</span><span class="st">&quot;P4439&quot;</span>, <span class="at">langsorder =</span> <span class="st">&#39;es|en&#39;</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(mncars) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(mncarsQ5)){</span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>  mncars[<span class="sc">!</span>(mncars<span class="sc">$</span>entity <span class="sc">%in%</span> mncarsQ5<span class="sc">$</span>entity),]  <span class="co"># not instance of Q5.</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="w_entityinfo" class="section level4">
 <h4>w_EntityInfo</h4>
 <p>Get some properties of a Wikidata entity.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(<span class="at">entity_list=</span><span class="st">&#39;Q134644&#39;</span>, <span class="at">langsorder=</span><span class="st">&#39;es|en&#39;</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(<span class="at">entity_list=</span><span class="st">&#39;Q134644&#39;</span>, <span class="at">langsorder=</span><span class="st">&#39;es|en&#39;</span>, <span class="at">wikilangs=</span><span class="st">&#39;es|en|fr&#39;</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(<span class="fu">c</span>(<span class="st">&#39;Q270510&#39;</span>, <span class="st">&#39;Q1675466&#39;</span>, <span class="st">&#39;Q24871&#39;</span>), <span class="at">mode=</span><span class="st">&#39;film&#39;</span>, <span class="at">langsorder=</span><span class="st">&#39;es|en&#39;</span>, <span class="at">wikilangs=</span><span class="st">&#39;es|en|fr&#39;</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="co"># Search string &#39;abba&#39; inlabel</span></span>
-<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">w_SearchByLabel</span>(<span class="st">&#39;abba&#39;</span>, <span class="at">mode=</span><span class="st">&#39;inlabel&#39;</span>, <span class="at">langsorder =</span> <span class="st">&#39;&#39;</span>, <span class="at">instanceof =</span> <span class="st">&#39;Q5&#39;</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(w<span class="sc">$</span>entity, <span class="at">langsorder=</span><span class="st">&#39;en&#39;</span>, <span class="at">wikilangs=</span><span class="st">&#39;en|es|fr&#39;</span>, <span class="at">debug=</span><span class="st">&#39;info&#39;</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a><span class="co"># Search 3D films</span></span>
-<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">w_SearchByInstanceof</span>(<span class="at">instanceof=</span><span class="st">&#39;Q229390&#39;</span>, <span class="at">langsorder =</span> <span class="st">&#39;en|es&#39;</span>, <span class="at">debug =</span> <span class="st">&#39;info&#39;</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(w<span class="sc">$</span>entity, <span class="at">mode=</span><span class="st">&quot;film&quot;</span>, <span class="at">langsorder=</span><span class="st">&#39;en&#39;</span>, <span class="at">wikilangs=</span><span class="st">&#39;en&#39;</span>, <span class="at">debug=</span><span class="st">&#39;info&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(<span class="at">entity_list=</span><span class="st">&#39;Q134644&#39;</span>, <span class="at">langsorder=</span><span class="st">&#39;es|en&#39;</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(<span class="at">entity_list=</span><span class="st">&#39;Q134644&#39;</span>, <span class="at">langsorder=</span><span class="st">&#39;es|en&#39;</span>, <span class="at">wikilangs=</span><span class="st">&#39;es|en|fr&#39;</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(<span class="fu">c</span>(<span class="st">&#39;Q270510&#39;</span>, <span class="st">&#39;Q1675466&#39;</span>, <span class="st">&#39;Q24871&#39;</span>), <span class="at">mode=</span><span class="st">&#39;film&#39;</span>, <span class="at">langsorder=</span><span class="st">&#39;es|en&#39;</span>, <span class="at">wikilangs=</span><span class="st">&#39;es|en|fr&#39;</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="co"># Search string &#39;van Beethoven&#39; inlabel</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">w_SearchByLabel</span>(<span class="st">&#39;van Beethoven&#39;</span>, <span class="at">mode=</span><span class="st">&#39;inlabel&#39;</span>, <span class="at">langsorder =</span> <span class="st">&#39;&#39;</span>, <span class="at">instanceof =</span> <span class="st">&#39;Q5&#39;</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(w)){</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(w<span class="sc">$</span>entity, <span class="at">langsorder=</span><span class="st">&#39;en&#39;</span>, <span class="at">wikilangs=</span><span class="st">&#39;en|es|fr&#39;</span>, <span class="at">debug=</span><span class="st">&#39;info&#39;</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>}</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co"># Search 3D films</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">w_SearchByInstanceof</span>(<span class="at">instanceof=</span><span class="st">&#39;Q229390&#39;</span>, <span class="at">langsorder =</span> <span class="st">&#39;en|es&#39;</span>, <span class="at">debug =</span> <span class="st">&#39;info&#39;</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(w)){</span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">w_EntityInfo</span>(w<span class="sc">$</span>entity, <span class="at">mode=</span><span class="st">&quot;film&quot;</span>, <span class="at">langsorder=</span><span class="st">&#39;en&#39;</span>, <span class="at">wikilangs=</span><span class="st">&#39;en&#39;</span>, <span class="at">debug=</span><span class="st">&#39;info&#39;</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="examples-of-wikimedia-functions" class="section level2">
@@ -589,10 +565,10 @@ Centro de Arte Reina Sofía)</p>
 <p>Search articles that contains any words (note: it is better to use a
 large string)</p>
 <p>Some search profiles:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">m_Opensearch</span>(<span class="at">string=</span><span class="st">&#39;Duque de Alba&#39;</span>, <span class="at">project=</span><span class="st">&#39;es.wikipedia.org&#39;</span>,</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>                   <span class="at">profile=</span><span class="st">&quot;engine_autoselect&quot;</span>, <span class="at">redirects=</span><span class="st">&quot;resolve&quot;</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">m_Opensearch</span>(<span class="at">string=</span><span class="st">&#39;Duque de Alba&#39;</span>, <span class="at">project=</span><span class="st">&#39;es.wikipedia.org&#39;</span>, <span class="at">profile=</span><span class="st">&quot;strict&quot;</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">m_Opensearch</span>(<span class="at">string=</span><span class="st">&#39;Duque de Alba&#39;</span>, <span class="at">project=</span><span class="st">&#39;es.wikipedia.org&#39;</span>, <span class="at">profile=</span><span class="st">&quot;fuzzy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">m_Opensearch</span>(<span class="at">string=</span><span class="st">&#39;Duque de Alba&#39;</span>, <span class="at">project=</span><span class="st">&#39;es.wikipedia.org&#39;</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>                   <span class="at">profile=</span><span class="st">&quot;engine_autoselect&quot;</span>, <span class="at">redirects=</span><span class="st">&quot;resolve&quot;</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">m_Opensearch</span>(<span class="at">string=</span><span class="st">&#39;Duque de Alba&#39;</span>, <span class="at">project=</span><span class="st">&#39;es.wikipedia.org&#39;</span>, <span class="at">profile=</span><span class="st">&quot;strict&quot;</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">m_Opensearch</span>(<span class="at">string=</span><span class="st">&#39;Duque de Alba&#39;</span>, <span class="at">project=</span><span class="st">&#39;es.wikipedia.org&#39;</span>, <span class="at">profile=</span><span class="st">&quot;fuzzy&quot;</span>)</span></code></pre></div>
 </div>
 <div id="m_reqmediawiki" class="section level4">
 <h4>m_reqMediaWiki</h4>
@@ -600,15 +576,15 @@ large string)</p>
 entity for them, if they have one.</p>
 <p>Note that URLdecode(“a%CC%8C”) is the letter “a” with the combining
 caron (ǎ)</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">m_reqMediaWiki</span>(<span class="fu">c</span>(<span class="st">&#39;Max Planck&#39;</span>, <span class="fu">URLdecode</span>(<span class="st">&quot;a%CC%8C&quot;</span>), <span class="st">&#39;Max&#39;</span>, <span class="st">&#39;Cervante&#39;</span>, <span class="st">&#39;humanist&#39;</span>),</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>                        <span class="at">mode=</span><span class="st">&#39;wikidataEntity&#39;</span>, <span class="at">project=</span><span class="st">&#39;en.wikipedia.org&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">m_reqMediaWiki</span>(<span class="fu">c</span>(<span class="st">&#39;Max Planck&#39;</span>, <span class="fu">URLdecode</span>(<span class="st">&quot;a%CC%8C&quot;</span>), <span class="st">&#39;Max&#39;</span>, <span class="st">&#39;Cervante&#39;</span>, <span class="st">&#39;humanist&#39;</span>),</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>                        <span class="at">mode=</span><span class="st">&#39;wikidataEntity&#39;</span>, <span class="at">project=</span><span class="st">&#39;en.wikipedia.org&#39;</span>)</span></code></pre></div>
 <p>Obtains the redirections of a page (the page itself can be a redirect
 to other page).</p>
 <p>Returns a vector for each title, in each vector the first element is
 the destiny, rest are all pages that redirect to it.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">m_reqMediaWiki</span>(<span class="fu">c</span>(<span class="st">&#39;Cervantes&#39;</span>, <span class="st">&#39;Planck&#39;</span>, <span class="st">&#39;Noexiste&#39;</span>), <span class="at">mode=</span><span class="st">&#39;redirects&#39;</span>,</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>                    <span class="at">project=</span><span class="st">&#39;es.wikipedia.org&#39;</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">m_reqMediaWiki</span>(<span class="fu">c</span>(<span class="st">&#39;Cervantes&#39;</span>, <span class="st">&#39;Planck&#39;</span>, <span class="st">&#39;Noexiste&#39;</span>), <span class="at">mode=</span><span class="st">&#39;redirects&#39;</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>                    <span class="at">project=</span><span class="st">&#39;es.wikipedia.org&#39;</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## $Cervantes
 ##  [1] &quot;Miguel de Cervantes&quot;            &quot;Miguel de Cerbantes&quot;           
 ##  [3] &quot;Miguel de Cervantes y Saavedra&quot; &quot;Miguel De Cervantes y Saavedra&quot;
@@ -631,21 +607,18 @@ videos…), using ‘|’ as separator, and excluding some extensions in the
 exclude_ext parameter.</p>
 <p>Both functions automatically resolve redirects (the destiny is the
 “normalized” column of the data-frame returned).</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">m_reqMediaWiki</span>(<span class="fu">c</span>(<span class="st">&#39;Max Planck&#39;</span>, <span class="fu">URLdecode</span>(<span class="st">&quot;a%CC%8C&quot;</span>), <span class="st">&#39;Max&#39;</span>, <span class="st">&#39;Cervante&#39;</span>, <span class="st">&#39;humanist&#39;</span>),</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>                  <span class="at">mode=</span><span class="st">&#39;pagePrimaryImage&#39;</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">m_reqMediaWiki</span>(<span class="fu">c</span>(<span class="st">&#39;Max Planck&#39;</span>, <span class="fu">URLdecode</span>(<span class="st">&quot;a%CC%8C&quot;</span>), <span class="st">&#39;Max&#39;</span>, <span class="st">&#39;Cervante&#39;</span>, <span class="st">&#39;humanist&#39;</span>),</span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>                  <span class="at">mode=</span><span class="st">&#39;pageFiles&#39;</span>, <span class="at">exclude_ext =</span> <span class="st">&quot;svg|webp|xcf&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">m_reqMediaWiki</span>(<span class="fu">c</span>(<span class="st">&#39;Max Planck&#39;</span>, <span class="fu">URLdecode</span>(<span class="st">&quot;a%CC%8C&quot;</span>), <span class="st">&#39;Max&#39;</span>, <span class="st">&#39;Cervante&#39;</span>, <span class="st">&#39;humanist&#39;</span>),</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>                  <span class="at">mode=</span><span class="st">&#39;pagePrimaryImage&#39;</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">m_reqMediaWiki</span>(<span class="fu">c</span>(<span class="st">&#39;Max Planck&#39;</span>, <span class="fu">URLdecode</span>(<span class="st">&quot;a%CC%8C&quot;</span>), <span class="st">&#39;Max&#39;</span>, <span class="st">&#39;Cervante&#39;</span>, <span class="st">&#39;humanist&#39;</span>),</span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>                  <span class="at">mode=</span><span class="st">&#39;pageFiles&#39;</span>, <span class="at">exclude_ext =</span> <span class="st">&quot;svg|webp|xcf&quot;</span>)</span></code></pre></div>
 </div>
 <div id="m_pageviews" class="section level4">
 <h4>m_Pageviews</h4>
 <p>Gets visits that a page have had in a date interval</p>
 <p>Optional: redirects</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>v <span class="ot">&lt;-</span>  <span class="fu">m_Pageviews</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">start=</span><span class="st">&quot;20230101&quot;</span>, <span class="at">end=</span><span class="st">&quot;20230501&quot;</span>,</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>                   <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>, <span class="at">granularity=</span><span class="st">&quot;monthly&quot;</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>vv <span class="ot">&lt;-</span> <span class="fu">m_Pageviews</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">start=</span><span class="st">&quot;20230101&quot;</span>, <span class="at">end=</span><span class="st">&quot;20230501&quot;</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>                   <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>, <span class="at">granularity=</span><span class="st">&quot;monthly&quot;</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>                   <span class="at">redirects=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>v <span class="ot">&lt;-</span>  <span class="fu">m_Pageviews</span>(<span class="at">article=</span><span class="st">&quot;Miguel de Cervantes&quot;</span>, <span class="at">start=</span><span class="st">&quot;20230101&quot;</span>, <span class="at">end=</span><span class="st">&quot;2026028&quot;</span>,</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>                   <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>, <span class="at">granularity=</span><span class="st">&quot;monthly&quot;</span>)</span></code></pre></div>
 </div>
 <div id="m_xtoolsinfo" class="section level4">
 <h4>m_XtoolsInfo</h4>
@@ -653,17 +626,17 @@ exclude_ext parameter.</p>
 project.</p>
 <p>Infotype: articleinfo, prose, links</p>
 <p>Optional: redirects</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>x <span class="ot">&lt;-</span>  <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;articleinfo&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;articleinfo&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>,</span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>                   <span class="at">redirects=</span><span class="cn">TRUE</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>y <span class="ot">&lt;-</span>  <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Miguel de Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;links&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>)</span>
-<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;links&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>,</span>
-<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a>                    <span class="at">redirects=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>x <span class="ot">&lt;-</span>  <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;articleinfo&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;articleinfo&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>                   <span class="at">redirects=</span><span class="cn">TRUE</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>y <span class="ot">&lt;-</span>  <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Miguel de Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;links&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;links&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>                    <span class="at">redirects=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Gets all information (articleinfo, prose, links).</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>z  <span class="ot">&lt;-</span> <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Miguel de Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;all&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>zz <span class="ot">&lt;-</span> <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;all&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>,</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>                       <span class="at">redirects=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>z  <span class="ot">&lt;-</span> <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Miguel de Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;all&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>zz <span class="ot">&lt;-</span> <span class="fu">m_XtoolsInfo</span>(<span class="at">article=</span><span class="st">&quot;Cervantes&quot;</span>, <span class="at">infotype=</span><span class="st">&quot;all&quot;</span>, <span class="at">project=</span><span class="st">&quot;es.wikipedia.org&quot;</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>                       <span class="at">redirects=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="examples-using-viaf-functions" class="section level2">
@@ -671,70 +644,518 @@ project.</p>
 <div id="v_autosuggest" class="section level4">
 <h4>v_AutoSuggest</h4>
 <p>Searches authors. Sometimes the same author appears several times,
-under a different name).</p>
+under a different name.</p>
 <p>Return a data-frame.</p>
 <p>Important: The API returns a maximum of 10 records.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">v_AutoSuggest</span>(<span class="st">&#39;Iranzo&#39;</span>)</span></code></pre></div>
-<pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">v_AutoSuggest</span>(<span class="st">&#39;Esparza, María&#39;</span>)</span></code></pre></div>
-<pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">v_AutoSuggest</span>(<span class="st">&#39;Escobar, Modesto&#39;</span>)</span></code></pre></div>
-<pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># Note that four rows are returned, but only two different viafids.</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">v_AutoSuggest</span>(<span class="st">&#39;Iranzo&#39;</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">v_AutoSuggest</span>(<span class="st">&#39;Esparza, María&#39;</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="fu">v_AutoSuggest</span>(<span class="st">&#39;Escobar, Modesto&#39;</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="co"># Note that four rows are returned, but only two different viafids.</span></span></code></pre></div>
 </div>
-<div id="v_search" class="section level4">
-<h4>v_Search</h4>
+<div id="v_search-and-v_extract" class="section level4">
+<h4>v_Search and v_Extract</h4>
 <p>Search using CQL_Query</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co"># Auxiliary function that extracts specific information from each record.</span></span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>showVIAF <span class="ot">&lt;-</span> <span class="cf">function</span>(r) {</span>
-<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>  i <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> r) {</span>
-<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>    i <span class="ot">&lt;-</span> i<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a>    <span class="co"># Get viaf record</span></span>
-<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a>    viaf <span class="ot">&lt;-</span> j<span class="sc">$</span>record<span class="sc">$</span>recordData</span>
-<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a>    viafid <span class="ot">&lt;-</span> viaf<span class="sc">$</span>viafID</span>
-<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">&quot;-----------</span><span class="sc">\n</span><span class="st">Record #&quot;</span>,i,<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Sources:</span><span class="sc">\n</span><span class="st">&quot;</span>))</span>
-<span id="cb37-10"><a href="#cb37-10" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">v_Extract</span>(viaf, <span class="at">info=</span><span class="st">&#39;sources&#39;</span>))</span>
-<span id="cb37-11"><a href="#cb37-11" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Gender: &quot;</span>);       <span class="fu">print</span>(<span class="fu">v_Extract</span>(viaf, <span class="at">info=</span><span class="st">&#39;gender&#39;</span>))</span>
-<span id="cb37-12"><a href="#cb37-12" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Dates: &quot;</span>) ;       <span class="fu">print</span>(<span class="fu">v_Extract</span>(viaf, <span class="at">info=</span><span class="st">&#39;dates&#39;</span>))</span>
-<span id="cb37-13"><a href="#cb37-13" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&#39;Occupations: &#39;</span>);  <span class="fu">print</span>(<span class="fu">v_Extract</span>(viaf, <span class="at">info=</span><span class="st">&#39;occupations&#39;</span>))</span>
-<span id="cb37-14"><a href="#cb37-14" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Titles: &quot;</span>);       <span class="fu">print</span>(<span class="fu">v_Extract</span>(viaf, <span class="at">info=</span><span class="st">&#39;titles&#39;</span>))</span>
-<span id="cb37-15"><a href="#cb37-15" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Wikipedias: &quot;</span>);   <span class="fu">print</span>(<span class="fu">v_Extract</span>(viaf, <span class="at">info=</span><span class="st">&#39;wikipedias&#39;</span>))</span>
-<span id="cb37-16"><a href="#cb37-16" tabindex="-1"></a>  }</span>
-<span id="cb37-17"><a href="#cb37-17" tabindex="-1"></a>}</span></code></pre></div>
 <p>Search in any field (cql.any)</p>
 <p>Operator is “=”: so search all terms and only those ones:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;cql.any = &quot;García Iranzo, Juan&quot;&#39;</span></span>
-<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
-<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="co"># r contains complete VIAF records (sometimes seen as a &quot;cluster record&quot;,</span></span>
-<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a><span class="co"># which is unified by combining records from many libraries around the world)</span></span>
-<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;cql.any = &quot;García Iranzo, Juan&quot;&#39;</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="co"># r contains complete VIAF records (sometimes seen as a &quot;cluster record&quot;,</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="co"># which is unified by combining records from many libraries around the world)</span></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="fu">v_Extract</span>(r)</span></code></pre></div>
+<pre><code>## $`Iranzo, G., 1918-1998`
+## $`Iranzo, G., 1918-1998`$Name
+## [1] &quot;Iranzo, G., 1918-1998&quot;
+## 
+## $`Iranzo, G., 1918-1998`$vid
+## [1] &quot;49001761&quot;
+## 
+## $`Iranzo, G., 1918-1998`$gender
+## [1] &quot;male&quot;
+## 
+## $`Iranzo, G., 1918-1998`$dates
+## [1] &quot;1918:1998&quot;
+## 
+## $`Iranzo, G., 1918-1998`$sources
+##                                       text                BNC             ISNI
+## 1                    Iranzo, G., 1918-1998 981058518730306706 0000000061151209
+## 2            Maravillas, Juanito 1921-1998               &lt;NA&gt;             &lt;NA&gt;
+## 3            García Iranzo, Juan 1918-1998               &lt;NA&gt;             &lt;NA&gt;
+## 4 Juan García Iranzo historietista español               &lt;NA&gt;             &lt;NA&gt;
+## 5               Maravillas, Juanito, 1921-               &lt;NA&gt;             &lt;NA&gt;
+##                  BNE        DNB      WKP           LC
+## 1               &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt;         &lt;NA&gt;
+## 2 981060879838108606       &lt;NA&gt;     &lt;NA&gt;         &lt;NA&gt;
+## 3               &lt;NA&gt; 1280548487     &lt;NA&gt;         &lt;NA&gt;
+## 4               &lt;NA&gt;       &lt;NA&gt; Q9015544         &lt;NA&gt;
+## 5               &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt; no2007032440
+## 
+## $`Iranzo, G., 1918-1998`$titles
+##  [1] &quot;Antonio Barbas Heredia&quot;                                                   
+##  [2] &quot;El Cachorro y los buitres del Mar Caribe&quot;                                 
+##  [3] &quot;El Capitán coraje&quot;                                                        
+##  [4] &quot;Cómete una tontería ; En una jaula de cristal : fandangos&quot;                
+##  [5] &quot;Dick Relámpago : el rey de la pradera&quot;                                    
+##  [6] &quot;La familia Pepe&quot;                                                          
+##  [7] &quot;Historia del flamenco, v. 31 [SR] 1996:&quot;                                  
+##  [8] &quot;El Hombre de los espacios&quot;                                                
+##  [9] &quot;Juanito Maravillas&quot;                                                       
+## [10] &quot;Mis cantes de oro&quot;                                                        
+## [11] &quot;Nueva ilusión&quot;                                                            
+## [12] &quot;Obra selecta.&quot;                                                            
+## [13] &quot;Pancho Colate&quot;                                                            
+## [14] &quot;Piropos andaluces&quot;                                                        
+## [15] &quot;Porque me diste esperanza : milonga ; Malditos sean los celos : fandangos&quot;
+## [16] &quot;Pregunté a una jardinera ; Están preciosas las flores&quot;                    
+## [17] &quot;Los reyes del cante&quot;                                                      
+## [18] &quot;Sierra de Cazorla&quot;                                                        
+## [19] &quot;Te deja vivir tranquilo : fandangos ; Yo no pensaba siquiera : fandangos&quot; 
+## [20] &quot;La Verdadera historia de Almuñécar&quot;                                       
+## [21] &quot;Y cuando llegue a Graná : granaínas ; Lo aprendí en La Carolina : taranta&quot;
+## 
+## $`Iranzo, G., 1918-1998`$occupations
+##         BNE
+## 1 cantaores
+## 
+## $`Iranzo, G., 1918-1998`$coauthors
+##                          coauthor
+## 1   Gómez Sodi, Domingo 1904-1989
+## 2  Vicente, el Granaíno 1927-2017
+## 3      Cruz Rueda, Juan 1925-2001
+## 4                 Macabich, Jorge
+## 5        Conde Martín, Luis 1940-
+## 6   Valderrama, Juanito 1916-2004
+## 7    Simón, Paquito 1931-ca. 1970
+## 8         Paco de Lucía 1947-2014
+## 9       Murillo, Camilo 1926-2007
+## 10       Martínez, Pepe 1923-1985
+## 
+## $`Iranzo, G., 1918-1998`$wikipedias
+## [1] &quot;https://ca.wikipedia.org/wiki/Juan_García_Iranzo&quot;
+## [2] &quot;https://es.wikipedia.org/wiki/Juan_García_Iranzo&quot;
+## [3] &quot;https://fr.wikipedia.org/wiki/G._Iranzo&quot;</code></pre>
 <p>Shortcut</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;García Iranzo, Juan&quot;</span>, <span class="at">mode=</span><span class="st">&quot;anyField&quot;</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;García Iranzo, Juan&quot;</span>, <span class="at">mode=</span><span class="st">&quot;anyField&quot;</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">v_Extract</span>(r)</span></code></pre></div>
+<pre><code>## $`Iranzo, G., 1918-1998`
+## $`Iranzo, G., 1918-1998`$Name
+## [1] &quot;Iranzo, G., 1918-1998&quot;
+## 
+## $`Iranzo, G., 1918-1998`$vid
+## [1] &quot;49001761&quot;
+## 
+## $`Iranzo, G., 1918-1998`$gender
+## [1] &quot;male&quot;
+## 
+## $`Iranzo, G., 1918-1998`$dates
+## [1] &quot;1918:1998&quot;
+## 
+## $`Iranzo, G., 1918-1998`$sources
+##                                       text                BNC             ISNI
+## 1                    Iranzo, G., 1918-1998 981058518730306706 0000000061151209
+## 2            Maravillas, Juanito 1921-1998               &lt;NA&gt;             &lt;NA&gt;
+## 3            García Iranzo, Juan 1918-1998               &lt;NA&gt;             &lt;NA&gt;
+## 4 Juan García Iranzo historietista español               &lt;NA&gt;             &lt;NA&gt;
+## 5               Maravillas, Juanito, 1921-               &lt;NA&gt;             &lt;NA&gt;
+##                  BNE        DNB      WKP           LC
+## 1               &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt;         &lt;NA&gt;
+## 2 981060879838108606       &lt;NA&gt;     &lt;NA&gt;         &lt;NA&gt;
+## 3               &lt;NA&gt; 1280548487     &lt;NA&gt;         &lt;NA&gt;
+## 4               &lt;NA&gt;       &lt;NA&gt; Q9015544         &lt;NA&gt;
+## 5               &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt; no2007032440
+## 
+## $`Iranzo, G., 1918-1998`$titles
+##  [1] &quot;Antonio Barbas Heredia&quot;                                                   
+##  [2] &quot;El Cachorro y los buitres del Mar Caribe&quot;                                 
+##  [3] &quot;El Capitán coraje&quot;                                                        
+##  [4] &quot;Cómete una tontería ; En una jaula de cristal : fandangos&quot;                
+##  [5] &quot;Dick Relámpago : el rey de la pradera&quot;                                    
+##  [6] &quot;La familia Pepe&quot;                                                          
+##  [7] &quot;Historia del flamenco, v. 31 [SR] 1996:&quot;                                  
+##  [8] &quot;El Hombre de los espacios&quot;                                                
+##  [9] &quot;Juanito Maravillas&quot;                                                       
+## [10] &quot;Mis cantes de oro&quot;                                                        
+## [11] &quot;Nueva ilusión&quot;                                                            
+## [12] &quot;Obra selecta.&quot;                                                            
+## [13] &quot;Pancho Colate&quot;                                                            
+## [14] &quot;Piropos andaluces&quot;                                                        
+## [15] &quot;Porque me diste esperanza : milonga ; Malditos sean los celos : fandangos&quot;
+## [16] &quot;Pregunté a una jardinera ; Están preciosas las flores&quot;                    
+## [17] &quot;Los reyes del cante&quot;                                                      
+## [18] &quot;Sierra de Cazorla&quot;                                                        
+## [19] &quot;Te deja vivir tranquilo : fandangos ; Yo no pensaba siquiera : fandangos&quot; 
+## [20] &quot;La Verdadera historia de Almuñécar&quot;                                       
+## [21] &quot;Y cuando llegue a Graná : granaínas ; Lo aprendí en La Carolina : taranta&quot;
+## 
+## $`Iranzo, G., 1918-1998`$occupations
+##         BNE
+## 1 cantaores
+## 
+## $`Iranzo, G., 1918-1998`$coauthors
+##                          coauthor
+## 1   Gómez Sodi, Domingo 1904-1989
+## 2  Vicente, el Granaíno 1927-2017
+## 3      Cruz Rueda, Juan 1925-2001
+## 4                 Macabich, Jorge
+## 5        Conde Martín, Luis 1940-
+## 6   Valderrama, Juanito 1916-2004
+## 7    Simón, Paquito 1931-ca. 1970
+## 8         Paco de Lucía 1947-2014
+## 9       Murillo, Camilo 1926-2007
+## 10       Martínez, Pepe 1923-1985
+## 
+## $`Iranzo, G., 1918-1998`$wikipedias
+## [1] &quot;https://ca.wikipedia.org/wiki/Juan_García_Iranzo&quot;
+## [2] &quot;https://es.wikipedia.org/wiki/Juan_García_Iranzo&quot;
+## [3] &quot;https://fr.wikipedia.org/wiki/G._Iranzo&quot;</code></pre>
 <p>Search in 1xx, 4xx, 5xx fields of MARC record (local.names)</p>
 <p>Operator is “all”: search all terms</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.names all &quot;Figuerola&quot;&#39;</span></span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.names all &quot;Figuerola&quot;&#39;</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span></code></pre></div>
 <p>Shortcut</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;Figuerola&quot;</span>, <span class="at">mode=</span><span class="st">&quot;allNames&quot;</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">length</span>(r), <span class="fu">length</span>(r2))</span></code></pre></div>
-<pre><code>## 0 0</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;Figuerola&quot;</span>, <span class="at">mode=</span><span class="st">&quot;allNames&quot;</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">length</span>(r), <span class="fu">length</span>(r2))</span></code></pre></div>
 <p>Records found exceeds the maximum per request API limit : 250</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.names all &quot;Bolero&quot;&#39;</span></span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.names all &quot;Bolero&quot;&#39;</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>r3 <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span></code></pre></div>
 <p>Search in 100, 400, 500 fields of MARC record
 (local.personalNames)</p>
 <p>Operator is “all”: search all terms</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.personalNames all &quot;Modesto Escobar&quot;&#39;</span></span>
-<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
-<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.personalNames all &quot;Modesto Escobar&quot;&#39;</span></span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="fu">v_Extract</span>(r)</span></code></pre></div>
+<pre><code>## $`Escobar Acosta, Modesto, 1877-1936`
+## $`Escobar Acosta, Modesto, 1877-1936`$Name
+## [1] &quot;Escobar Acosta, Modesto, 1877-1936&quot;
+## 
+## $`Escobar Acosta, Modesto, 1877-1936`$vid
+## [1] &quot;7168225997652780032&quot;
+## 
+## $`Escobar Acosta, Modesto, 1877-1936`$gender
+## [1] &quot;u&quot;
+## 
+## $`Escobar Acosta, Modesto, 1877-1936`$dates
+## [1] &quot;1877:1936&quot;
+## 
+## $`Escobar Acosta, Modesto, 1877-1936`$sources
+##                                 text           LC
+## 1 Escobar Acosta, Modesto, 1877-1936 n 2023023856
+## 
+## $`Escobar Acosta, Modesto, 1877-1936`$titles
+## [1] &quot;Modesto Escobar Acosta, 2022:&quot;
+## 
+## $`Escobar Acosta, Modesto, 1877-1936`$occupations
+## NULL
+## 
+## $`Escobar Acosta, Modesto, 1877-1936`$coauthors
+## NULL
+## 
+## $`Escobar Acosta, Modesto, 1877-1936`$wikipedias
+## NULL
+## 
+## 
+## $`Escobar, Modesto, 1958-`
+## $`Escobar, Modesto, 1958-`$Name
+## [1] &quot;Escobar, Modesto, 1958-&quot;
+## 
+## $`Escobar, Modesto, 1958-`$vid
+## [1] &quot;75898534&quot;
+## 
+## $`Escobar, Modesto, 1958-`$gender
+## [1] &quot;male&quot;
+## 
+## $`Escobar, Modesto, 1958-`$dates
+## [1] &quot;1958:&quot;
+## 
+## $`Escobar, Modesto, 1958-`$sources
+##                       text       DNB                BNC     SUDOC
+## 1  Escobar, Modesto, 1958- 171872282 981058511260506706      &lt;NA&gt;
+## 2 Escobar Mercado, Modesto      &lt;NA&gt;               &lt;NA&gt; 184094852
+## 3         Escobar, Modesto      &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;
+##               ISNI          LC
+## 1             &lt;NA&gt;        &lt;NA&gt;
+## 2 0000000059273899        &lt;NA&gt;
+## 3             &lt;NA&gt; no 95018832
+## 
+## $`Escobar, Modesto, 1958-`$titles
+##  [1] &quot;Análisis de datos con Stata, 2012:&quot;                                                    
+##  [2] &quot;El análisis de segmentación : técnicas y aplicaciones de los árboles de clasificación&quot; 
+##  [3] &quot;Análisis gráfico/exploratorio&quot;                                                         
+##  [4] &quot;Autoempleo y actividades empresariales de las mujeres en España&quot;                       
+##  [5] &quot;Deviation, inequality, polarization : some measures of social diversity&quot;               
+##  [6] &quot;Entonces, más allá del viento&quot;                                                         
+##  [7] &quot;El Futuro de los medios de comunicación ante el impacto de las nuevas tecnologías&quot;     
+##  [8] &quot;La Identidad social del parado&quot;                                                        
+##  [9] &quot;Los pronósticos electorales con encuestas : elecciones generales en España (1979-2011)&quot;
+## [10] &quot;Socioestadística : introducción a la estadística en sociología&quot;                        
+## [11] &quot;Works or union councils?, 1993:&quot;                                                       
+## 
+## $`Escobar, Modesto, 1958-`$occupations
+##             LC
+## 1 sociologists
+## 
+## $`Escobar, Modesto, 1958-`$coauthors
+##                                                              coauthor
+## 1                                          Fernández Macías, Enrique.
+## 2                    Centro de Investigaciones Sociológicas (Espanya)
+## 3                                                 Bernardi, Fabrizio.
+## 4                                                     Rivière, Jaime.
+## 5                                                         Morato, Ana
+## 6                                            Cilleros Conde, Roberto.
+## 7  Centro de Estudios Avanzados en Ciencias Sociales (Madrid, Madrid)
+## 8                                               Rivière Gómez, Jaime.
+## 9                  Observatorio de Prospectiva Tecnológica Industrial
+## 10                                              Mañà Oller, Francesc.
+## 
+## $`Escobar, Modesto, 1958-`$wikipedias
+## NULL
+## 
+## 
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`$Name
+## [1] &quot;Escobar A., Modesto (Escobar Aquino), 1940-&quot;
+## 
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`$vid
+## [1] &quot;23569810&quot;
+## 
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`$gender
+## [1] &quot;u&quot;
+## 
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`$dates
+## [1] &quot;1940:&quot;
+## 
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`$sources
+##                                          text          LC             ISNI
+## 1 Escobar A., Modesto (Escobar Aquino), 1940- n  85099351             &lt;NA&gt;
+## 2               Escobar Aquino, Modesto 1940-        &lt;NA&gt; 0000000028458030
+## 
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`$titles
+## [1] &quot;Don Juan Pitogüe&quot;                    
+## [2] &quot;Entonces, más allá del viento, 1984:&quot;
+## [3] &quot;Poems&quot;                               
+## [4] &quot;Poesía completa en castellano&quot;       
+## [5] &quot;Savia caminante&quot;                     
+## [6] &quot;Siete en punto.&quot;                     
+## 
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`$occupations
+## NULL
+## 
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`$coauthors
+## NULL
+## 
+## $`Escobar A., Modesto (Escobar Aquino), 1940-`$wikipedias
+## NULL
+## 
+## 
+## $`Escobar Espinar, Modesto`
+## $`Escobar Espinar, Modesto`$Name
+## [1] &quot;Escobar Espinar, Modesto&quot;
+## 
+## $`Escobar Espinar, Modesto`$vid
+## [1] &quot;6744770&quot;
+## 
+## $`Escobar Espinar, Modesto`$gender
+## [1] &quot;male&quot;
+## 
+## $`Escobar Espinar, Modesto`$dates
+## [1] &quot;1940:&quot;
+## 
+## $`Escobar Espinar, Modesto`$sources
+##                                 text                BNC     SUDOC
+## 1           Escobar Espinar, Modesto 981058511260406706 060233524
+## 2                   Escobar, Modesto               &lt;NA&gt;      &lt;NA&gt;
+## 3     Escobar Espinar, Modesto 1940-               &lt;NA&gt;      &lt;NA&gt;
+## 4            Escobar, Modesto, 1940-               &lt;NA&gt;      &lt;NA&gt;
+## 5                    Modesto Escobar               &lt;NA&gt;      &lt;NA&gt;
+## 6      Escobar Aquino, Modesto 1940-               &lt;NA&gt;      &lt;NA&gt;
+## 7 Escobar, Modesto (Escobar Espinar)               &lt;NA&gt;      &lt;NA&gt;
+##               ISNI                BNE       NKC       WKP        DNB
+## 1             &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;
+## 2 0000000059339384               &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;
+## 3             &lt;NA&gt; 981060893897308606      &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;
+## 4             &lt;NA&gt;               &lt;NA&gt; xx0199364      &lt;NA&gt;       &lt;NA&gt;
+## 5             &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt; Q93432076       &lt;NA&gt;
+## 6             &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt; 1057399809
+## 7             &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;
+##             LC
+## 1         &lt;NA&gt;
+## 2         &lt;NA&gt;
+## 3         &lt;NA&gt;
+## 4         &lt;NA&gt;
+## 5         &lt;NA&gt;
+## 6         &lt;NA&gt;
+## 7 n 2001099447
+## 
+## $`Escobar Espinar, Modesto`$titles
+## [1] &quot;El comercio electrónico : perspectiva presente y futura en España&quot;                       
+## [2] &quot;La empresa en la red&quot;                                                                    
+## [3] &quot;Gestión de la cadena de suministro : estudio de prospectiva&quot;                             
+## [4] &quot;La Sociedad de la información : introducción a la convergencia tecnológica y empresarial&quot;
+## [5] &quot;Sociedad de la información : las marcas y el comercio electrónico&quot;                       
+## 
+## $`Escobar Espinar, Modesto`$occupations
+##                     NKC
+## 1 vysokoskolsti ucitele
+## 2         stomatologove
+## 3               basnici
+## 
+## $`Escobar Espinar, Modesto`$coauthors
+##                                              coauthor
+## 1                            Rodríguez Cortezo, Jesús
+## 2                             Torrecilla, José Miguel
+## 3                                   Riego, Alonso del
+## 4  Observatorio de Prospectiva Tecnológica Industrial
+## 5                              Riego Alonso, Luis del
+## 6                                          Retevisión
+## 7                                      Mañà, Francesc
+## 8                       Martínez Martín, María Isabel
+## 9                            Jiménez de Ochoa, Sergio
+## 10                 Escuela de Organización Industrial
+## 
+## $`Escobar Espinar, Modesto`$wikipedias
+## NULL</code></pre>
 <p>v_Search mode=allmainHeadingEl: 1xx fields of MARC record:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;Escobar Mercado, Modesto&quot;</span>, <span class="at">mode=</span><span class="st">&#39;allmainHeadingEl&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(<span class="st">&quot;Escobar Mercado, Modesto&quot;</span>, <span class="at">mode=</span><span class="st">&#39;allmainHeadingEl&#39;</span>)</span></code></pre></div>
 <p>Search in Titles</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.title all &quot;Los pronósticos electorales con encuestas&quot;&#39;</span></span>
-<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
-<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a><span class="fu">showVIAF</span>(r)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.title all &quot;Los pronósticos electorales con encuestas&quot;&#39;</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a><span class="fu">v_Extract</span>(r)</span></code></pre></div>
+<pre><code>## $`Cilleros Conde, Roberto`
+## $`Cilleros Conde, Roberto`$Name
+## [1] &quot;Cilleros Conde, Roberto&quot;
+## 
+## $`Cilleros Conde, Roberto`$vid
+## [1] &quot;313245622&quot;
+## 
+## $`Cilleros Conde, Roberto`$gender
+## [1] &quot;male&quot;
+## 
+## $`Cilleros Conde, Roberto`$dates
+## [1] &quot;:&quot;
+## 
+## $`Cilleros Conde, Roberto`$sources
+##                      text     SUDOC        DNB       BNE             ISNI
+## 1 Cilleros Conde, Roberto 184094968 1081650478 XX5449768 0000000444360374
+## 
+## $`Cilleros Conde, Roberto`$titles
+## [1] &quot;Los pronósticos electorales con encuestas.-&quot;
+## 
+## $`Cilleros Conde, Roberto`$occupations
+## NULL
+## 
+## $`Cilleros Conde, Roberto`$coauthors
+##                    coauthor
+## 1            Rivière, Jaime
+## 2     Rivière Gómez, Jaime.
+## 3    Escobar, Modesto 1958-
+## 4 Escobar Mercado, Modesto.
+## 
+## $`Cilleros Conde, Roberto`$wikipedias
+## NULL
+## 
+## 
+## $`Escobar, Modesto, 1958-`
+## $`Escobar, Modesto, 1958-`$Name
+## [1] &quot;Escobar, Modesto, 1958-&quot;
+## 
+## $`Escobar, Modesto, 1958-`$vid
+## [1] &quot;75898534&quot;
+## 
+## $`Escobar, Modesto, 1958-`$gender
+## [1] &quot;male&quot;
+## 
+## $`Escobar, Modesto, 1958-`$dates
+## [1] &quot;1958:&quot;
+## 
+## $`Escobar, Modesto, 1958-`$sources
+##                       text       DNB                BNC     SUDOC
+## 1  Escobar, Modesto, 1958- 171872282 981058511260506706      &lt;NA&gt;
+## 2 Escobar Mercado, Modesto      &lt;NA&gt;               &lt;NA&gt; 184094852
+## 3         Escobar, Modesto      &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;
+##               ISNI          LC
+## 1             &lt;NA&gt;        &lt;NA&gt;
+## 2 0000000059273899        &lt;NA&gt;
+## 3             &lt;NA&gt; no 95018832
+## 
+## $`Escobar, Modesto, 1958-`$titles
+##  [1] &quot;Análisis de datos con Stata, 2012:&quot;                                                    
+##  [2] &quot;El análisis de segmentación : técnicas y aplicaciones de los árboles de clasificación&quot; 
+##  [3] &quot;Análisis gráfico/exploratorio&quot;                                                         
+##  [4] &quot;Autoempleo y actividades empresariales de las mujeres en España&quot;                       
+##  [5] &quot;Deviation, inequality, polarization : some measures of social diversity&quot;               
+##  [6] &quot;Entonces, más allá del viento&quot;                                                         
+##  [7] &quot;El Futuro de los medios de comunicación ante el impacto de las nuevas tecnologías&quot;     
+##  [8] &quot;La Identidad social del parado&quot;                                                        
+##  [9] &quot;Los pronósticos electorales con encuestas : elecciones generales en España (1979-2011)&quot;
+## [10] &quot;Socioestadística : introducción a la estadística en sociología&quot;                        
+## [11] &quot;Works or union councils?, 1993:&quot;                                                       
+## 
+## $`Escobar, Modesto, 1958-`$occupations
+##             LC
+## 1 sociologists
+## 
+## $`Escobar, Modesto, 1958-`$coauthors
+##                                                              coauthor
+## 1                                          Fernández Macías, Enrique.
+## 2                    Centro de Investigaciones Sociológicas (Espanya)
+## 3                                                 Bernardi, Fabrizio.
+## 4                                                     Rivière, Jaime.
+## 5                                                         Morato, Ana
+## 6                                            Cilleros Conde, Roberto.
+## 7  Centro de Estudios Avanzados en Ciencias Sociales (Madrid, Madrid)
+## 8                                               Rivière Gómez, Jaime.
+## 9                  Observatorio de Prospectiva Tecnológica Industrial
+## 10                                              Mañà Oller, Francesc.
+## 
+## $`Escobar, Modesto, 1958-`$wikipedias
+## NULL
+## 
+## 
+## $`Rivière, Jaime`
+## $`Rivière, Jaime`$Name
+## [1] &quot;Rivière, Jaime&quot;
+## 
+## $`Rivière, Jaime`$vid
+## [1] &quot;73221692&quot;
+## 
+## $`Rivière, Jaime`$gender
+## [1] &quot;u&quot;
+## 
+## $`Rivière, Jaime`$dates
+## [1] &quot;:&quot;
+## 
+## $`Rivière, Jaime`$sources
+##                   text                BNC             ISNI           LC
+## 1       Rivière, Jaime 981058515263906706 0000000370165778 n 2002118142
+## 2 Rivière Gómez, Jaime               &lt;NA&gt;             &lt;NA&gt;         &lt;NA&gt;
+##       SUDOC
+## 1      &lt;NA&gt;
+## 2 184094917
+## 
+## $`Rivière, Jaime`$titles
+## [1] &quot;Cultura económica : actitudes ante el Estado y el mercado en España&quot;                   
+## [2] &quot;Desviació i control social.&quot;                                                           
+## [3] &quot;Desviación y control social&quot;                                                           
+## [4] &quot;Fracaso y abandono escolar en España&quot;                                                  
+## [5] &quot;Los pronósticos electorales con encuestas : elecciones generales en España (1979-2011)&quot;
+## 
+## $`Rivière, Jaime`$occupations
+## NULL
+## 
+## $`Rivière, Jaime`$coauthors
+##                                            coauthor
+## 1                              Mena Martínez, Luis.
+## 2                       Fernández Enguita, Mariano.
+## 3                 Fundació &quot;la Caixa&quot;. Obra Social.
+## 4                   Universitat Oberta de Catalunya
+## 5                              Waisgrais, Sebastián
+## 6                  Vélaz de Medrano Ureta, Consuelo
+## 7                            Serra i Salamé, Carles
+## 8                                     Roca, Enrique
+## 9                           Cilleros Conde, Roberto
+## 10 Centro de Investigaciones Sociológicas (Espanya)
+## 
+## $`Rivière, Jaime`$wikipedias
+## NULL</code></pre>
 </div>
 </div>
 
