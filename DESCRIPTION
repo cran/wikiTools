@@ -1,7 +1,7 @@
 Package: wikiTools
 Type: Package
-Version: 1.2.24
-Date: 2026-05-22
+Version: 1.2.26
+Date: 2026-08-07
 Title: Tools for Wikidata and Wikipedia
 Description: A set of wrappers intended to check, read and download information from the Wikimedia sources. It is specifically created to work with names of celebrities, in which case their information and statistics can be downloaded. Additionally, it also builds links and snippets to use in combination with the function gallery() in netCoin package.
 License: GPL-3
@@ -16,7 +16,7 @@ Authors@R: c(
     person("Ángel", "Zazo", email = "angelzazo@usal.es", role = c("aut")), 
     person("Carlos", "Prieto", email = "cprietos@usal.es", role = c("aut"), comment = c(ORCID = "0000-0001-8178-9768")),
     person("David", "Barrios", email = "metal@usal.es", role = "aut"),
-    person("Cristina", "Calvo", email = "cristinacalvolopez@usal.es", role = "aut")
+    person("Cristina", "Calvo", email = "cristina.calvo@poli.uned.es", role = "aut")
     )
 Maintainer: Modesto Escobar <modesto@usal.es>
 RoxygenNote: 7.3.2
@@ -24,7 +24,7 @@ Acknowledgments: Grants CSO2013-49278-EXP, PGC2018-093755-B100,
         PDC2022-133355-100, PID2023-147358NB-100 funded by
         MICIU/AEI/10.13039/501100011033 and by “European Union
         NextGenerationEU/PRTR”.
-Packaged: 2026-05-25 09:32:13 UTC; Modesto
+Packaged: 2026-08-11 08:07:08 UTC; modes
 Author: Modesto Escobar [aut, cph, cre] (ORCID:
     <https://orcid.org/0000-0003-2072-6071>),
   Ángel Zazo [aut],
@@ -32,4 +32,4 @@ Author: Modesto Escobar [aut, cph, cre] (ORCID:
   David Barrios [aut],
   Cristina Calvo [aut]
 Repository: CRAN
-Date/Publication: 2026-05-25 15:00:02 UTC
+Date/Publication: 2026-08-22 15:20:08 UTC

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Angel Zazo, Department of Computer Science and Automatics, University of Salamanca Modesto Escobar, Department of Sociology and Communication, University of Salamanca" />
 
-<meta name="date" content="2026-05-25" />
+<meta name="date" content="2026-08-11" />
 
 <title>wikiTools package</title>
 
@@ -343,7 +343,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h4 class="author">Angel Zazo, Department of Computer Science and
 Automatics, University of Salamanca Modesto Escobar, Department of
 Sociology and Communication, University of Salamanca</h4>
-<h4 class="date">2026-05-25</h4>
+<h4 class="date">2026-08-11</h4>
 
 
 
@@ -461,7 +461,9 @@ later.</h4>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">w_SearchByLabel</span>(<span class="at">string=</span><span class="st">&#39;Iranzo&#39;</span>, <span class="at">langsorder=</span><span class="st">&#39;es|en&#39;</span>, <span class="at">mode=</span><span class="st">&#39;inlabel&#39;</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(df)){</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  l <span class="ot">&lt;-</span> df<span class="sc">$</span>entity</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Q45975643&quot;</span>, <span class="st">&quot;Q107379816&quot;</span>, <span class="st">&quot;Q61892699&quot;</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="w_isinstanceof" class="section level4">
 <h4>w_isInstanceOf</h4>
@@ -895,16 +897,16 @@ under a different name.</p>
 ## 
 ## $`Escobar, Modesto, 1958-`$coauthors
 ##                                                              coauthor
-## 1                                          Fernández Macías, Enrique.
+## 1                                           Fernández Macías, Enrique
 ## 2                    Centro de Investigaciones Sociológicas (Espanya)
-## 3                                                 Bernardi, Fabrizio.
-## 4                                                     Rivière, Jaime.
+## 3                                                  Bernardi, Fabrizio
+## 4                                                      Rivière, Jaime
 ## 5                                                         Morato, Ana
-## 6                                            Cilleros Conde, Roberto.
+## 6                                             Cilleros Conde, Roberto
 ## 7  Centro de Estudios Avanzados en Ciencias Sociales (Madrid, Madrid)
-## 8                                               Rivière Gómez, Jaime.
+## 8                                                Rivière Gómez, Jaime
 ## 9                  Observatorio de Prospectiva Tecnológica Industrial
-## 10                                              Mañà Oller, Francesc.
+## 10                                                     Mañá, Francesc
 ## 
 ## $`Escobar, Modesto, 1958-`$wikipedias
 ## NULL
@@ -1019,143 +1021,8 @@ under a different name.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>CQL_Query <span class="ot">&lt;-</span> <span class="st">&#39;local.title all &quot;Los pronósticos electorales con encuestas&quot;&#39;</span></span>
 <span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">v_Search</span>(CQL_Query)</span>
 <span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a><span class="fu">v_Extract</span>(r)</span></code></pre></div>
-<pre><code>## $`Cilleros Conde, Roberto`
-## $`Cilleros Conde, Roberto`$Name
-## [1] &quot;Cilleros Conde, Roberto&quot;
-## 
-## $`Cilleros Conde, Roberto`$vid
-## [1] &quot;313245622&quot;
-## 
-## $`Cilleros Conde, Roberto`$gender
-## [1] &quot;male&quot;
-## 
-## $`Cilleros Conde, Roberto`$dates
-## [1] &quot;:&quot;
-## 
-## $`Cilleros Conde, Roberto`$sources
-##                      text     SUDOC        DNB       BNE             ISNI
-## 1 Cilleros Conde, Roberto 184094968 1081650478 XX5449768 0000000444360374
-## 
-## $`Cilleros Conde, Roberto`$titles
-## [1] &quot;Los pronósticos electorales con encuestas.-&quot;
-## 
-## $`Cilleros Conde, Roberto`$occupations
-## NULL
-## 
-## $`Cilleros Conde, Roberto`$coauthors
-##                    coauthor
-## 1            Rivière, Jaime
-## 2     Rivière Gómez, Jaime.
-## 3    Escobar, Modesto 1958-
-## 4 Escobar Mercado, Modesto.
-## 
-## $`Cilleros Conde, Roberto`$wikipedias
-## NULL
-## 
-## 
-## $`Escobar, Modesto, 1958-`
-## $`Escobar, Modesto, 1958-`$Name
-## [1] &quot;Escobar, Modesto, 1958-&quot;
-## 
-## $`Escobar, Modesto, 1958-`$vid
-## [1] &quot;75898534&quot;
-## 
-## $`Escobar, Modesto, 1958-`$gender
-## [1] &quot;male&quot;
-## 
-## $`Escobar, Modesto, 1958-`$dates
-## [1] &quot;1958:&quot;
-## 
-## $`Escobar, Modesto, 1958-`$sources
-##                       text       DNB                BNC     SUDOC
-## 1  Escobar, Modesto, 1958- 171872282 981058511260506706      &lt;NA&gt;
-## 2 Escobar Mercado, Modesto      &lt;NA&gt;               &lt;NA&gt; 184094852
-## 3         Escobar, Modesto      &lt;NA&gt;               &lt;NA&gt;      &lt;NA&gt;
-##               ISNI          LC
-## 1             &lt;NA&gt;        &lt;NA&gt;
-## 2 0000000059273899        &lt;NA&gt;
-## 3             &lt;NA&gt; no 95018832
-## 
-## $`Escobar, Modesto, 1958-`$titles
-##  [1] &quot;Análisis de datos con Stata, 2012:&quot;                                                    
-##  [2] &quot;El análisis de segmentación : técnicas y aplicaciones de los árboles de clasificación&quot; 
-##  [3] &quot;Análisis gráfico/exploratorio&quot;                                                         
-##  [4] &quot;Autoempleo y actividades empresariales de las mujeres en España&quot;                       
-##  [5] &quot;Deviation, inequality, polarization : some measures of social diversity&quot;               
-##  [6] &quot;Entonces, más allá del viento&quot;                                                         
-##  [7] &quot;El Futuro de los medios de comunicación ante el impacto de las nuevas tecnologías&quot;     
-##  [8] &quot;La Identidad social del parado&quot;                                                        
-##  [9] &quot;Los pronósticos electorales con encuestas : elecciones generales en España (1979-2011)&quot;
-## [10] &quot;Socioestadística : introducción a la estadística en sociología&quot;                        
-## [11] &quot;Works or union councils?, 1993:&quot;                                                       
-## 
-## $`Escobar, Modesto, 1958-`$occupations
-##             LC
-## 1 sociologists
-## 
-## $`Escobar, Modesto, 1958-`$coauthors
-##                                                              coauthor
-## 1                                          Fernández Macías, Enrique.
-## 2                    Centro de Investigaciones Sociológicas (Espanya)
-## 3                                                 Bernardi, Fabrizio.
-## 4                                                     Rivière, Jaime.
-## 5                                                         Morato, Ana
-## 6                                            Cilleros Conde, Roberto.
-## 7  Centro de Estudios Avanzados en Ciencias Sociales (Madrid, Madrid)
-## 8                                               Rivière Gómez, Jaime.
-## 9                  Observatorio de Prospectiva Tecnológica Industrial
-## 10                                              Mañà Oller, Francesc.
-## 
-## $`Escobar, Modesto, 1958-`$wikipedias
-## NULL
-## 
-## 
-## $`Rivière, Jaime`
-## $`Rivière, Jaime`$Name
-## [1] &quot;Rivière, Jaime&quot;
-## 
-## $`Rivière, Jaime`$vid
-## [1] &quot;73221692&quot;
-## 
-## $`Rivière, Jaime`$gender
-## [1] &quot;u&quot;
-## 
-## $`Rivière, Jaime`$dates
-## [1] &quot;:&quot;
-## 
-## $`Rivière, Jaime`$sources
-##                   text                BNC             ISNI           LC
-## 1       Rivière, Jaime 981058515263906706 0000000370165778 n 2002118142
-## 2 Rivière Gómez, Jaime               &lt;NA&gt;             &lt;NA&gt;         &lt;NA&gt;
-##       SUDOC
-## 1      &lt;NA&gt;
-## 2 184094917
-## 
-## $`Rivière, Jaime`$titles
-## [1] &quot;Cultura económica : actitudes ante el Estado y el mercado en España&quot;                   
-## [2] &quot;Desviació i control social.&quot;                                                           
-## [3] &quot;Desviación y control social&quot;                                                           
-## [4] &quot;Fracaso y abandono escolar en España&quot;                                                  
-## [5] &quot;Los pronósticos electorales con encuestas : elecciones generales en España (1979-2011)&quot;
-## 
-## $`Rivière, Jaime`$occupations
-## NULL
-## 
-## $`Rivière, Jaime`$coauthors
-##                                            coauthor
-## 1                              Mena Martínez, Luis.
-## 2                       Fernández Enguita, Mariano.
-## 3                 Fundació &quot;la Caixa&quot;. Obra Social.
-## 4                   Universitat Oberta de Catalunya
-## 5                              Waisgrais, Sebastián
-## 6                  Vélaz de Medrano Ureta, Consuelo
-## 7                            Serra i Salamé, Carles
-## 8                                     Roca, Enrique
-## 9                           Cilleros Conde, Roberto
-## 10 Centro de Investigaciones Sociológicas (Espanya)
-## 
-## $`Rivière, Jaime`$wikipedias
-## NULL</code></pre>
+<pre><code>## The the provided argument is NULL.</code></pre>
+<pre><code>## NULL</code></pre>
 </div>
 </div>
 

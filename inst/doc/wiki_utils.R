@@ -38,6 +38,8 @@ library(wikiTools)
 df <- w_SearchByLabel(string='Iranzo', langsorder='es|en', mode='inlabel')
 if(length(df)){
   l <- df$entity
+}else{
+  l <- c("Q45975643", "Q107379816", "Q61892699")
 }
 
 ## ----w_isIntanceOf, echo=TRUE-------------------------------------------------
